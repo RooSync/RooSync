@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'Minecrafter_Reg';
+    src: url('./Minecrafter.Reg.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Minecrafter_Alt';
+    src: url('./Minecrafter.Alt.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'PressStart2P-Regular';
+    src: url('./PressStart2P-Regular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Minecraftia';
+    src: url('./Minecraftia.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'pixelmix-1';
+    src: url('./pixelmix-1.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'pixelmix-bold-2';
+    src: url('./pixelmix-bold-2.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* @font-face {
+    font-family: 'Monopol';
+    src: url('MonopolLight-Bold.eot');
+    src: url('MonopolLight-Bold.eot?#iefix') format('embedded-opentype'),
+        url('MonopolLight-Bold.woff2') format('woff2'),
+        url('MonopolLight-Bold.woff') format('woff'),
+        url('MonopolLight-Bold.ttf') format('truetype'),
+        url('MonopolLight-Bold.svg#MonopolLight-Bold') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sk-Modernist';
+    src: url('Sk-Modernist-Regular.eot');
+    src: url('Sk-Modernist-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Sk-Modernist-Regular.woff2') format('woff2'),
+        url('Sk-Modernist-Regular.woff') format('woff'),
+        url('Sk-Modernist-Regular.ttf') format('truetype'),
+        url('Sk-Modernist-Regular.svg#Sk-Modernist-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+ */
