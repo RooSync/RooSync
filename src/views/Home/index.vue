@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+const handleClick = () => {
+  console.log('Link clicked, but no navigation occurred.')
+}
+</script>
 
 <template>
   <div id="home">
@@ -11,7 +15,7 @@
               Go-to web3 utility store where tools meet convenient In a
               Roo-tastic way
             </h2>
-            <a href="https://unisat.io/brc20" target="_blank">
+            <a href="#" @click.prevent="handleClick" target="_blank">
               <button class="buy">
                 <span class="box">
                   Buy $ROOC

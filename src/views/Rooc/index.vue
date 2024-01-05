@@ -40,7 +40,7 @@ onUpdated(() => {})
   <div class="economy">
     <div class="total">
       <p class="text-total">TOTAL SUPPLY</p>
-      <h2 class="total-title">100,000,000</h2>
+      <h2 class="total-title">1,000,000,000</h2>
       <p class="type">Type: ❓</p>
     </div>
     <div class="distribution">

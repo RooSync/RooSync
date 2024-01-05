@@ -68,7 +68,6 @@ onMounted(() => {
   width: 100%;
   min-width: 100px;
   min-height: 100px;
-  background-image: none;
   background-color: black;
 }
 
