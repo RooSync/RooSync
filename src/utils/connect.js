@@ -24,17 +24,17 @@ export function setupWeb3Modal(projectId) {
     projectId,
     tokens: {
       1: {
-        address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // 代币地址
+        address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
         image:
           'https://www.logo.wine/a/logo/Ethereum_Classic/Ethereum_Classic-Logo.wine.svg'
       },
       137: {
-        address: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619', // 另一个代币地址
+        address: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
         image:
           'https://www.logo.wine/a/logo/Ethereum_Classic/Ethereum_Classic-Logo.wine.svg'
       }
     },
-    themeMode: 'dark', // 设置主题模式
+    themeMode: 'dark',
     themeVariables: {
       '--w3m-font-family': 'Minecrafter_Reg',
       '--w3m-accent': '#FDB10D',

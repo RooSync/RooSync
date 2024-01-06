@@ -75,7 +75,7 @@
 <style scoped lang="scss">
 // Your styles go here
 .footer {
-  height: 10vh; /* 分配剩余的视口高度 */
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;

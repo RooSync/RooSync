@@ -10,7 +10,7 @@ const isHovered = ref(false)
 
 async function onConnect() {
   const address = await connectWallet(modal)
-  // ... 处理获取到的地址
+
   // walletAddress.value = address
   console.log(address)
   // console.log(walletAddress)
@@ -104,10 +104,10 @@ nav a {
   margin-right: 20px;
   text-decoration: none;
   position: relative;
-  transition: color 0.3s; /* 添加过渡效果 */
+  transition: color 0.3s;
 }
 .nav-page:hover {
-  color: #fdb10d; /* 鼠标移入时的字体颜色 */
+  color: #fdb10d;
 }
 
 .nav-page::after {

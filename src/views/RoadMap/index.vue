@@ -4,8 +4,6 @@ import { ref } from 'vue'
 const isDialogVisible = ref(false)
 const activeItem = ref({})
 const dataList = ref([
-  // ... 数据数组不变
-  // 您的数据项
   {
     num: '01',
     title: 'RooSync Online',
@@ -271,7 +269,7 @@ const closeDialog = () => {
     }
   }
 }
-/* 新增模态框样式 */
+
 .modal-overlay {
   position: fixed;
   top: 0;

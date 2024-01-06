@@ -179,15 +179,15 @@ onUpdated(() => {})
   width: 100%;
   position: relative;
   z-index: 9;
-  max-width: 1264px; /* 版心宽度 */
-  margin: 0 auto; /* 居中 */
+  max-width: 1264px; 
+  margin: 0 auto; 
 
   .main-wrapper {
     position: relative;
     overflow: hidden;
     height: 80vh;
-    max-width: 1264px; /* 版心宽度 */
-    margin: 0 auto; /* 居中 */
+    max-width: 1264px; 
+    margin: 0 auto; 
     width: 100%;
   }
   .main {
