@@ -119,7 +119,7 @@ const closeDialog = () => {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-left: 40px;
+      padding-left: 25px;
     }
   }
   .model-item {
@@ -187,7 +187,7 @@ const closeDialog = () => {
   //   color: #1e1f2a;
   // }
   .road-main {
-    margin-top: 0;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     .road-main-item {
@@ -364,6 +364,8 @@ const closeDialog = () => {
       }
     }
     .road-map-wrapper {
+      margin-right: 20px;
+      padding-left: 0;
       .com-title {
         margin-top: 0;
         padding-bottom: 40px;

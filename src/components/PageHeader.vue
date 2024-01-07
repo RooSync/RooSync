@@ -50,7 +50,7 @@ async function onConnect() {
 
 <style lang="scss" scoped>
 .header {
-  margin-top: 6px;
+  margin-top: 30px;
   position: relative;
   top: 0;
   left: 0;
@@ -223,11 +223,4 @@ nav a {
 // .shape {
 //   fill: #fdb10d;
 // }
-@media (max-width: 991px) {
-  .w3m-button {
-    text-align: center;
-    max-width: 30px;
-    display: block;
-  }
-}
 </style>

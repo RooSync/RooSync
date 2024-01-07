@@ -66,6 +66,7 @@ onUpdated(() => {})
   box-sizing: border-box;
   // padding-top: 100px;
   .w {
+    padding-top: 36px;
     height: 100%;
   }
 }
@@ -78,6 +79,7 @@ onUpdated(() => {})
   // height: 100%;
 
   .roo-left {
+    margin-top: -100px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -104,6 +106,7 @@ onUpdated(() => {})
     }
   }
   .roo-right {
+    margin-top: -30px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -125,12 +128,15 @@ onUpdated(() => {})
   padding: 20px;
   max-width: 1440px;
   margin: 0 auto;
+  padding-top: 0;
+  margin-top: -36px;
 }
 .total {
   text-align: left;
   max-width: 1264px;
   width: 100%;
   padding-left: 35px;
+  margin-top: -30px;
 }
 
 .text-total {

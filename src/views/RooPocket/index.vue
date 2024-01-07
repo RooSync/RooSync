@@ -36,7 +36,7 @@ onUpdated(() => {})
               </div>
             </div>
 
-            <div class="text2">UTILITY</div>
+            <div class="text2">UTILITY ⬇</div>
             <div class="card-list">
               <div class="card-item">
                 <div class="left">
@@ -140,24 +140,19 @@ onUpdated(() => {})
 .pic_real_main {
   position: fixed;
   bottom: 0;
-  // position: absolute;
   margin: 50px;
   right: 0;
   width: 40%;
   .main-img {
     // margin-right: 10%;
-    height: 100%;
-    width: 36vw;
+    height: auto;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    .img {
-      // max-width: 700px;
-      // width: 40%;
+
+    img {
       width: 100%;
-      img {
-        width: 100%;
-      }
     }
   }
 }
@@ -179,21 +174,21 @@ onUpdated(() => {})
   width: 100%;
   position: relative;
   z-index: 9;
-  max-width: 1264px; 
-  margin: 0 auto; 
+  max-width: 1264px;
+  margin: 0 auto;
 
   .main-wrapper {
     position: relative;
     overflow: hidden;
     height: 80vh;
-    max-width: 1264px; 
-    margin: 0 auto; 
+    max-width: 1264px;
+    margin: 0 auto;
     width: 100%;
   }
   .main {
     max-width: 590px;
     padding-top: 0;
-    padding-bottom: 80px;
+    padding-bottom: 50px;
     height: 80vh;
     position: absolute;
     left: 0;
@@ -332,7 +327,7 @@ onUpdated(() => {})
     }
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .real {
     width: 100%;
   }

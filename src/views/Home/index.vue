@@ -84,6 +84,7 @@ const handleClick = () => {
 <style lang="scss" scoped>
 #home {
   margin-top: 0 auto;
+  margin-bottom: 90px;
   box-sizing: border-box;
   max-height: 1024px;
   display: flex;
@@ -91,7 +92,7 @@ const handleClick = () => {
   justify-content: center;
 }
 .r-home {
-  margin-bottom: 50px;
+  margin-top: 50px;
 }
 .login-container {
   display: flex;
