@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-// 用户模块 token setToken removeToken
+
 export const useUserStore = defineStore(
   'big-user',
   () => {
@@ -12,7 +12,6 @@ export const useUserStore = defineStore(
       token.value = ''
     }
 
-    // 暴露出去
     return {
       token,
       setToken,

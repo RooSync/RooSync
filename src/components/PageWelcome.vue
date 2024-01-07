@@ -63,12 +63,13 @@ onMounted(() => {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .orbit {
   float: left;
   width: 100%;
   min-width: 100px;
   min-height: 100px;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .orbit-icon {

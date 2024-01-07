@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// 导入组件
+
 import Home from '@/views/Home/index.vue'
 import RoadMap from '@/views/RoadMap/index.vue'
 import Rooc from '@/views/Rooc/index.vue'
@@ -18,11 +18,10 @@ const router = createRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  // 检查是否是首次访问网站（即从无到有的路由跳转）
   if (to.path !== '/welcome' && from.matched.length === 0) {
-    next('/welcome') // 重定向到欢迎页面
+    next('/welcome')
   } else {
-    next() // 继续到下一个钩子
+    next()
   }
 })
 export default router
