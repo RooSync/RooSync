@@ -2,7 +2,6 @@
 import { onMounted, onUpdated } from 'vue'
 
 onMounted(() => {})
-
 onUpdated(() => {})
 </script>
 

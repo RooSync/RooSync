@@ -89,7 +89,7 @@ onMounted(() => {
             </svg>
           </button></div
       ></a>
-      <a href="https://github.com/RooSync/RooSync" target="_blank"
+      <a href="https://github.com/RooSync-tool" target="_blank"
         ><div class="child child-2">
           <button class="button btn-2">
             <svg
