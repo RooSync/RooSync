@@ -84,15 +84,16 @@ const handleClick = () => {
 <style lang="scss" scoped>
 #home {
   margin-top: 0 auto;
-  margin-bottom: 90px;
+  margin-bottom: 30px;
   box-sizing: border-box;
   max-height: 1024px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 30px;
 }
 .r-home {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .login-container {
   display: flex;

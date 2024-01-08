@@ -7,13 +7,30 @@ const projectId = '60b14c9cc884b15ff285f0a5c2f0b1c4'
 const modal = setupWeb3Modal(projectId)
 
 const isHovered = ref(false)
+const showCustomButton = ref(true)
+const showButtonBorders = ref(false)
+const walletConnected = ref(false)
 
 async function onConnect() {
   const address = await connectWallet(modal)
-
+  console.log(modal)
   // walletAddress.value = address
   console.log(address)
   // console.log(walletAddress)
+  if (address) {
+    walletConnected.value = true
+    showCustomButton.value = false
+    showButtonBorders.value = true
+  } else {
+    walletConnected.value = false
+    showCustomButton.value = true
+    showButtonBorders.value = false
+  }
+}
+const onCustomButtonClick = async () => {
+  await onConnect() // 先尝试连接
+  showCustomButton.value = false // 隐藏自定义按钮
+  showButtonBorders.value = true // 显示原始按钮
 }
 </script>
 
@@ -36,11 +53,18 @@ async function onConnect() {
         <router-link to="/tool" class="nav-page">Tool </router-link>
       </nav>
     </div>
-    <div class="button-borders">
+    <button
+      v-if="showCustomButton"
+      @click="onCustomButtonClick"
+      class="custom-button"
+    >
+      Connect
+    </button>
+    <div class="button-borders" v-show="showButtonBorders">
       <w3m-button
         @click="onConnect()"
         class="primary-button"
-        balance="show"
+        balance="hide"
         size="md"
         label="Connect"
       ></w3m-button>
@@ -50,7 +74,7 @@ async function onConnect() {
 
 <style lang="scss" scoped>
 .header {
-  margin-top: 30px;
+  margin-top: 10px;
   position: relative;
   top: 0;
   left: 0;
@@ -59,7 +83,7 @@ async function onConnect() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 110px;
+  padding: 5px 70px;
   height: auto;
 }
 
@@ -71,7 +95,7 @@ async function onConnect() {
 }
 .logo {
   transition: transform 0.3s ease-in-out;
-  margin-left: -20px;
+  margin-left: 0px;
 }
 .h-img {
   max-width: 190px;
@@ -223,4 +247,56 @@ nav a {
 // .shape {
 //   fill: #fdb10d;
 // }
+button {
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  box-shadow: 0px 0px 0px 3px black;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #fdb10d;
+  color: black;
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+  transition: all 0.6s ease-in-out;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: black;
+  color: #f8edeb;
+}
+
+button::before {
+  content: '🦊';
+  position: absolute;
+  left: -0rem;
+  top: 0rem;
+  opacity: 1;
+  font-size: 1.8rem;
+  transition: all 0.6s ease-in-out;
+  transform: rotate(0deg);
+}
+
+button:hover::before {
+  content: '🦘';
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(40deg);
+  font-size: 2.5rem;
+  top: -0.75rem;
+  transition: all 0.6s ease-in-out;
+  animation: rightRun 1.3s forwards;
+}
+
+button:active::before {
+  content: '';
+}
+
+@keyframes rightRun {
+  100% {
+    transform: translateX(140px);
+  }
+}
 </style>

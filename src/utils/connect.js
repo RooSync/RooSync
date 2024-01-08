@@ -53,6 +53,8 @@ export async function connectWallet(modal) {
     return accounts[0] || null
   } catch (error) {
     console.error('Error connecting to wallet:', error)
+    console.log('Modal object:', modal)
+    console.log('Provider:', modal.provider)
     return null
   }
 }
