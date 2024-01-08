@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import axios from 'axios'
 
 const etherscanApiKey = import.meta.env.VITE_ETHERSCAN_API_KEY
+const blockcypherApiKey = import.meta.env.VITE_BLOCKCYPHER_API_KEY
 
 const ethGasPrice = ref(null)
 const btcTransactionFee = ref({
@@ -9,41 +11,36 @@ const btcTransactionFee = ref({
   medium_fee_per_kb: null,
   low_fee_per_kb: null
 })
-const updateInterval = 120000
-const fetchEthGasPrice = () => {
-  // ... eth ...
-  fetch(
-    `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${etherscanApiKey}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      if (data && data.result) {
-        // 使用推荐的平均Gas价格
-        ethGasPrice.value = data.result.ProposeGasPrice
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching gas prices:', error)
-    })
-}
-const fetchBtcTransactionFee = () => {
-  // ... btc ...
-  const token = import.meta.env.VITE_BLOCKCYPHER_API_KEY
+const updateInterval = 60000
 
-  fetch(`https://api.blockcypher.com/v1/btc/main?token=${token}`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        btcTransactionFee.value = {
-          high_fee_per_kb: data.high_fee_per_kb,
-          medium_fee_per_kb: data.medium_fee_per_kb,
-          low_fee_per_kb: data.low_fee_per_kb
-        }
+const fetchEthGasPrice = async () => {
+  try {
+    const response = await axios.get(
+      `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${etherscanApiKey}`
+    )
+    if (response.data && response.data.result) {
+      ethGasPrice.value = response.data.result.ProposeGasPrice
+    }
+  } catch (error) {
+    console.error('Error fetching gas prices:', error)
+  }
+}
+
+const fetchBtcTransactionFee = async () => {
+  try {
+    const response = await axios.get(
+      `https://api.blockcypher.com/v1/btc/main?token=${blockcypherApiKey}`
+    )
+    if (response.data) {
+      btcTransactionFee.value = {
+        high_fee_per_kb: response.data.high_fee_per_kb,
+        medium_fee_per_kb: response.data.medium_fee_per_kb,
+        low_fee_per_kb: response.data.low_fee_per_kb
       }
-    })
-    .catch((error) => {
-      console.error('Error fetching Bitcoin transaction fee:', error)
-    })
+    }
+  } catch (error) {
+    console.error('Error fetching Bitcoin transaction fee:', error)
+  }
 }
 
 onMounted(() => {
