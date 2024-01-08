@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
 import Home from '@/views/Home/index.vue'
 import RoadMap from '@/views/RoadMap/index.vue'
 import Rooc from '@/views/Rooc/index.vue'
