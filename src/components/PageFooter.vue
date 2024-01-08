@@ -1,7 +1,81 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const etherscanApiKey = import.meta.env.VITE_ETHERSCAN_API_KEY
+
+const ethGasPrice = ref(null)
+const btcTransactionFee = ref({
+  high_fee_per_kb: null,
+  medium_fee_per_kb: null,
+  low_fee_per_kb: null
+})
+const updateInterval = 120000
+const fetchEthGasPrice = () => {
+  // ... eth ...
+  fetch(
+    `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${etherscanApiKey}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      if (data && data.result) {
+        // 使用推荐的平均Gas价格
+        ethGasPrice.value = data.result.ProposeGasPrice
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching gas prices:', error)
+    })
+}
+const fetchBtcTransactionFee = () => {
+  // ... btc ...
+  const token = import.meta.env.VITE_BLOCKCYPHER_API_KEY
+
+  fetch(`https://api.blockcypher.com/v1/btc/main?token=${token}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        btcTransactionFee.value = {
+          high_fee_per_kb: data.high_fee_per_kb,
+          medium_fee_per_kb: data.medium_fee_per_kb,
+          low_fee_per_kb: data.low_fee_per_kb
+        }
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching Bitcoin transaction fee:', error)
+    })
+}
+
+onMounted(() => {
+  fetchEthGasPrice()
+  fetchBtcTransactionFee()
+  const interval = setInterval(() => {
+    fetchEthGasPrice()
+    fetchBtcTransactionFee()
+  }, updateInterval)
+
+  onUnmounted(() => {
+    clearInterval(interval)
+  })
+})
+</script>
 
 <template>
   <div class="footer">
+    <div class="gas">
+      <img
+        class="eth"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Eth-diamond-rainbow.png/1200px-Eth-diamond-rainbow.png"
+        alt="Ethereum"
+      />
+      <p class="eth-gas">{{ ethGasPrice }} Gwei</p>
+      <img
+        class="btc"
+        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/45_Bitcoin_logo_logos-512.png"
+        alt="Bitcoin"
+      />
+      <p class="btc-gas">{{ btcTransactionFee.medium_fee_per_kb }} sat/vB</p>
+    </div>
     <div class="parent">
       <a href="https://twitter.com/roo_sync" target="_blank"
         ><div class="child child-1">
@@ -77,19 +151,56 @@
 .footer {
   height: 10vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 100px;
 }
-.parent {
+.gas {
+  display: flex;
+  flex: 1;
+  align-items: center;
   width: 100%;
   height: 100%;
+}
+.eth-gas {
   display: flex;
-  justify-content: center;
+  font-size: 16px;
   align-items: center;
+  color: grey;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-right: 30px;
+}
+.eth {
+  margin-right: 10px;
+  width: auto;
+  height: 40%;
+  object-fit: cover;
+  object-position: center;
+}
+.btc-gas {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  color: grey;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.btc {
+  margin-right: 5px;
+  width: auto;
+  height: 40%;
+  object-fit: cover;
+  object-position: center;
+}
+.parent {
+  width: 50%;
+  height: 100%;
+  display: flex;
+
+  align-items: center;
+  margin-right: -445px;
 }
 
 .child {
-  width: 50px;
+  width: 60px;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -97,7 +208,7 @@
   transform-style: preserve-3d;
   transition: all 0.5s ease-in-out;
   border-radius: 50%;
-  margin: 0 5px;
+  margin: 0 3px;
 }
 
 .child:hover {
