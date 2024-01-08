@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+import { onMounted, onUpdated } from 'vue'
+onMounted(() => {})
+
+onUpdated(() => {})
+</script>
 <template>
   <div class="orbit">
     <ul class="orbit-wrap">

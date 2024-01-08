@@ -1,4 +1,8 @@
 <script setup>
+import { onMounted, onUpdated } from 'vue'
+onMounted(() => {})
+
+onUpdated(() => {})
 const handleClick = () => {
   console.log('Link clicked, but no navigation occurred.')
 }

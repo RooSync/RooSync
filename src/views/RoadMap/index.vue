@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import { onMounted, onUpdated } from 'vue'
+onMounted(() => {})
 
+onUpdated(() => {})
 const isDialogVisible = ref(false)
 const activeItem = ref({})
 const dataList = ref([
