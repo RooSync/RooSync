@@ -23,6 +23,12 @@ dependencies:
   ethers:
     specifier: 5.7.2
     version: 5.7.2
+  hellojs:
+    specifier: ^1.20.0
+    version: 1.20.0
+  oauth-1.0a:
+    specifier: ^2.2.6
+    version: 2.2.6
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(vue@3.4.1)
@@ -3047,6 +3053,10 @@ packages:
     dependencies:
       function-bind: 1.1.2
 
+  /hellojs@1.20.0:
+    resolution: {integrity: sha512-zfZGRt0J0OpJHnw2GJz4uh+rzMNAMWpIymiaRbSmCqCvqDMLSx2/qR5JucqnHPsZHUEjyKj5aLJ8K54kyHHjLQ==, tarball: https://registry.npmmirror.com/hellojs/-/hellojs-1.20.0.tgz}
+    dev: false
+
   /hey-listen@1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==, tarball: https://registry.npmmirror.com/hey-listen/-/hey-listen-1.0.8.tgz}
     dev: false
@@ -3647,6 +3657,10 @@ packages:
     dependencies:
       boolbase: 1.0.0
     dev: true
+
+  /oauth-1.0a@2.2.6:
+    resolution: {integrity: sha512-6bkxv3N4Gu5lty4viIcIAnq5GbxECviMBeKR3WX/q87SPQ8E8aursPZUtsXDnxCs787af09WPRBLqYrf/lwoYQ==, tarball: https://registry.npmmirror.com/oauth-1.0a/-/oauth-1.0a-2.2.6.tgz}
+    dev: false
 
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==, tarball: https://registry.npmmirror.com/object-assign/-/object-assign-4.1.1.tgz}

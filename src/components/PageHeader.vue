@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-
 import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
+import hello from 'hellojs'
 
 const projectId = '60b14c9cc884b15ff285f0a5c2f0b1c4'
 const modal = setupWeb3Modal(projectId)
@@ -32,6 +32,30 @@ const onCustomButtonClick = async () => {
   showCustomButton.value = false // 隐藏自定义按钮
   showButtonBorders.value = true // 显示原始按钮
 }
+hello.init(
+  {
+    twitter: 'xvuPHAgj9PHENkLdophDrSaYz'
+  },
+  {
+    redirect_uri: 'https://roosync.com/'
+  }
+)
+async function connectTwitter() {
+  try {
+    await hello('twitter').login()
+    // 用户已授权，你可以执行后续操作
+  } catch (error) {
+    console.error('Twitter authentication error:', error)
+  }
+}
+// async function getUserProfile() {
+//   try {
+//     const response = await hello('twitter').api('me')
+//     console.log('Twitter user profile:', response)
+//   } catch (error) {
+//     console.error('Twitter API error:', error)
+//   }
+// }
 </script>
 
 <template>
@@ -53,6 +77,8 @@ const onCustomButtonClick = async () => {
         <router-link to="/tool" class="nav-page">Tool </router-link>
       </nav>
     </div>
+    <!-- <a href="#" class="share" @click="getUserProfile">share</a> -->
+    <a href="#" class="share" @click="connectTwitter">share</a>
     <button
       v-if="showCustomButton"
       @click="onCustomButtonClick"
