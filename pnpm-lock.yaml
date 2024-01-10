@@ -26,6 +26,9 @@ dependencies:
   hellojs:
     specifier: ^1.20.0
     version: 1.20.0
+  oauth:
+    specifier: ^0.10.0
+    version: 0.10.0
   oauth-1.0a:
     specifier: ^2.2.6
     version: 2.2.6
@@ -3660,6 +3663,10 @@ packages:
 
   /oauth-1.0a@2.2.6:
     resolution: {integrity: sha512-6bkxv3N4Gu5lty4viIcIAnq5GbxECviMBeKR3WX/q87SPQ8E8aursPZUtsXDnxCs787af09WPRBLqYrf/lwoYQ==, tarball: https://registry.npmmirror.com/oauth-1.0a/-/oauth-1.0a-2.2.6.tgz}
+    dev: false
+
+  /oauth@0.10.0:
+    resolution: {integrity: sha512-1orQ9MT1vHFGQxhuy7E/0gECD3fd2fCC+PIX+/jgmU/gI3EpRocXtmtvxCO5x3WZ443FLTLFWNDjl5MPJf9u+Q==, tarball: https://registry.npmmirror.com/oauth/-/oauth-0.10.0.tgz}
     dev: false
 
   /object-assign@4.1.1:

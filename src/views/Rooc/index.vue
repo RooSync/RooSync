@@ -41,7 +41,7 @@ onUpdated(() => {})
     <div class="total">
       <p class="text-total">TOTAL SUPPLY</p>
       <h2 class="total-title">1,000,000,000</h2>
-      <p class="type">Type: ❓</p>
+      <p class="type"></p>
     </div>
     <div class="distribution">
       <img class="token-img" src="@/assets/images/rooc-economy.png" alt="" />
