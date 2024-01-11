@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 
 import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
+import firebaseConfig from '@/utils/firebaseConfig'
+import { getAuth, signInWithPopup, TwitterAuthProvider } from 'firebase/auth'
 
 const projectId = '60b14c9cc884b15ff285f0a5c2f0b1c4'
 const modal = setupWeb3Modal(projectId)
@@ -28,9 +30,28 @@ async function onConnect() {
   }
 }
 const onCustomButtonClick = async () => {
-  await onConnect() // 先尝试连接
-  showCustomButton.value = false // 隐藏自定义按钮
-  showButtonBorders.value = true // 显示原始按钮
+  await onConnect()
+  showCustomButton.value = false
+  showButtonBorders.value = true
+}
+// twitter share
+firebaseConfig
+
+const auth = getAuth()
+const user = ref('')
+const isSignedIn = ref(false)
+
+const providerTwitter = new TwitterAuthProvider()
+
+const handleSignInTwitter = () => {
+  signInWithPopup(auth, providerTwitter)
+    .then((result) => {
+      user.value = result.user.displayName
+      isSignedIn.value = true
+    })
+    .catch((error) => {
+      console.error(error)
+    })
 }
 </script>
 
@@ -53,8 +74,11 @@ const onCustomButtonClick = async () => {
         <router-link to="/tool" class="nav-page">Tool </router-link>
       </nav>
     </div>
-    <!-- <a href="#" class="share" @click="getUserProfile">share</a> -->
-    <!-- <a href="#" class="share" @click="loginWithTwitter">share</a> -->
+
+    <div class="TwitterSignIn">
+      <img class="x-logo" src="../assets/images/x_logo.svg" alt="" />
+      <a href="#" @click="handleSignInTwitter">share</a>
+    </div>
     <button
       v-if="showCustomButton"
       @click="onCustomButtonClick"
@@ -300,5 +324,20 @@ button:active::before {
   100% {
     transform: translateX(140px);
   }
+}
+.x-logo {
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+}
+.TwitterSignIn a {
+  height: 100%;
+  color: whitesmoke;
+  font-size: 20px;
+}
+
+.TwitterSignIn a:hover {
+  color: #fdb10d;
+  transition: color 0.3s;
 }
 </style>
