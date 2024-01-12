@@ -3,7 +3,12 @@ import { ref } from 'vue'
 import { auth } from '@/utils/firebaseConfig'
 import { signInWithPopup, TwitterAuthProvider } from 'firebase/auth'
 
-// twitter share
+// announcement
+const showAnnouncement = ref(false)
+const toggleAnnouncement = () => {
+  showAnnouncement.value = !showAnnouncement.value
+}
+// twitter verify
 const user = ref('')
 const isSignedIn = ref(false)
 
@@ -26,7 +31,7 @@ const handleSignInTwitter = () => {
     <button class="loginTwitter" @click="handleSignInTwitter">Login</button>
   </div> -->
   <div class="main">
-    <div class="b-title w-full mb-4 md:mb-6">
+    <div class="b-title" @click="toggleAnnouncement">
       <button
         type="button"
         class="illustrate flex w-full justify-between items-center py-2 px-3 rounded border border-green-500 dark:border-green-100"
@@ -76,9 +81,7 @@ const handleSignInTwitter = () => {
               class="btn-verify"
               @click="handleSignInTwitter"
             >
-              <div class="flex mx-auto gap-2 items-center">
-                Verify your twitter
-              </div>
+              <div class="btn-verify_p">Verify your twitter</div>
             </button>
           </div>
           <div class="wallet mb-3">
@@ -206,15 +209,38 @@ const handleSignInTwitter = () => {
       </div>
     </div>
   </div>
+
+  <!-- 遮罩层 -->
+  <div
+    v-if="showAnnouncement"
+    class="overlay"
+    @click="toggleAnnouncement"
+  ></div>
+  <!-- amm -->
+  <div v-if="showAnnouncement" class="announcement-box">
+    <div class="announcement-content">
+      <div class="ann_title">
+        <h2>About points</h2>
+        <button class="close-button" @click="toggleAnnouncement">X</button>
+      </div>
+      <hr />
+      <p class="ann_p">
+        Users can earn RooSync points by inviting friends and interacting with
+        us on Twitter, such as #RooSync. Points can be redeemed for whitelisting
+        and airdrops of $ROOC
+      </p>
+    </div>
+  </div>
   <PageFooter></PageFooter>
 </template>
 
 <style scoped>
 .main {
   box-sizing: border-box;
-  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
   padding-left: 80px;
-  padding-right: 60px;
+  padding-right: 80px;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -238,6 +264,7 @@ const handleSignInTwitter = () => {
 .illustrate-p {
   text-align: left;
   font-size: 100%;
+  opacity: 0.6;
 }
 .illustrate-img {
   display: flex;
@@ -287,6 +314,10 @@ h3 {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+.btn-verify_p {
+  font-family: 'Minecrafter_Alt';
+  font-weight: 400;
 }
 .wallet {
   height: auto;
@@ -364,5 +395,58 @@ h3 {
   color: aliceblue;
   font-family: 'Minecrafter_Alt';
   cursor: pointer;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+}
+/* amm */
+.announcement-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #3a3a3a 100%);
+  z-index: 1000;
+  border: 1px solid #505050;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.announcement-box.active {
+  display: block;
+}
+.ann_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.announcement-content h2 {
+  font-weight: 400;
+  color: #fdb10d;
+}
+
+.announcement-content hr {
+  border: none;
+  border-bottom: 1px solid #505050;
+  margin-bottom: 24px;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 100%;
+  cursor: pointer;
+}
+.ann_p {
+  font-size: 12px;
 }
 </style>

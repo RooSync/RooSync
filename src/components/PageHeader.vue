@@ -51,13 +51,10 @@ const onCustomButtonClick = async () => {
         <router-link to="/roopocket" class="nav-page">ROO POcket</router-link>
         <router-link to="/roadmap" class="nav-page">ROAD MAP</router-link>
         <router-link to="/tool" class="nav-page">Tool </router-link>
+        <router-link to="/airdrop" class="nav-page">🔥airdrop </router-link>
       </nav>
     </div>
 
-    <div class="TwitterSignIn">
-      <!-- <img class="x-logo" src="../assets/images/x_logo.svg" alt="" /> -->
-      <router-link to="/airdrop" class="Airdrop">🔥airdrop </router-link>
-    </div>
     <button
       v-if="showCustomButton"
       @click="onCustomButtonClick"
