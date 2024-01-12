@@ -5,6 +5,8 @@ import Rooc from '@/views/Rooc/index.vue'
 import RooPocket from '@/views/RooPocket/index.vue'
 import PageWelcome from '@/components/PageWelcome.vue'
 import PageText from '@/components/PageTool.vue'
+import Airdrop from '@/components/AirdropUser.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -13,7 +15,8 @@ const router = createRouter({
     { path: '/roadmap', component: RoadMap },
     { path: '/rooc', component: Rooc },
     { path: '/roopocket', component: RooPocket },
-    { path: '/tool', component: PageText }
+    { path: '/tool', component: PageText },
+    { path: '/airdrop', component: Airdrop }
   ]
 })
 router.beforeEach((to, from, next) => {

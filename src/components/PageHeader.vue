@@ -2,8 +2,6 @@
 import { ref } from 'vue'
 
 import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
-import firebaseConfig from '@/utils/firebaseConfig'
-import { getAuth, signInWithPopup, TwitterAuthProvider } from 'firebase/auth'
 
 const projectId = '60b14c9cc884b15ff285f0a5c2f0b1c4'
 const modal = setupWeb3Modal(projectId)
@@ -34,25 +32,6 @@ const onCustomButtonClick = async () => {
   showCustomButton.value = false
   showButtonBorders.value = true
 }
-// twitter share
-firebaseConfig
-
-const auth = getAuth()
-const user = ref('')
-const isSignedIn = ref(false)
-
-const providerTwitter = new TwitterAuthProvider()
-
-const handleSignInTwitter = () => {
-  signInWithPopup(auth, providerTwitter)
-    .then((result) => {
-      user.value = result.user.displayName
-      isSignedIn.value = true
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-}
 </script>
 
 <template>
@@ -76,8 +55,8 @@ const handleSignInTwitter = () => {
     </div>
 
     <div class="TwitterSignIn">
-      <img class="x-logo" src="../assets/images/x_logo.svg" alt="" />
-      <a href="#" @click="handleSignInTwitter">share</a>
+      <!-- <img class="x-logo" src="../assets/images/x_logo.svg" alt="" /> -->
+      <router-link to="/airdrop" class="Airdrop">🔥airdrop </router-link>
     </div>
     <button
       v-if="showCustomButton"
