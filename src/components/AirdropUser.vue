@@ -29,6 +29,21 @@ const handleSignInTwitter = () => {
 const handleSignOut = () => {
   isUserLoggedIn.value = false
 }
+// copy
+const inviteLink = ref('https://roosync.com/')
+const showCopySuccess = ref(false)
+
+const copyInviteLink = () => {
+  navigator.clipboard
+    .writeText(inviteLink.value)
+    .then(() => {
+      showCopySuccess.value = true
+      setTimeout(() => (showCopySuccess.value = false), 2000)
+    })
+    .catch((err) => {
+      console.error('Error in copying text: ', err)
+    })
+}
 </script>
 
 <template>
@@ -113,7 +128,7 @@ const handleSignOut = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p>@Aurora_Web3</p>
+                <p class="user_id_after">@Aurora_Web3</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
@@ -157,7 +172,7 @@ const handleSignOut = () => {
             <div class="user_points">
               <span class="after_num">invitation link</span>
             </div>
-            <div class="after_invite">
+            <div class="after_invite" @click="copyInviteLink">
               <button class="invite_link">https://roosync.com/</button>
               <div class="copy_link">
                 <svg
@@ -188,6 +203,9 @@ const handleSignOut = () => {
                 </svg>
               </div>
             </div>
+            <div v-if="showCopySuccess" class="copy-success-message">
+              Copied
+            </div>
           </div>
         </div>
       </div>
@@ -206,6 +224,42 @@ const handleSignOut = () => {
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
             <hr class="line" />
+            <li class="list_info">
+              <div class="list_address">
+                <p class="list_address_p">
+                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
+                </p>
+              </div>
+              <div class="list_point">
+                <p class="list_point_p">
+                  <span>75,601</span>
+                </p>
+              </div>
+            </li>
+            <li class="list_info">
+              <div class="list_address">
+                <p class="list_address_p">
+                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
+                </p>
+              </div>
+              <div class="list_point">
+                <p class="list_point_p">
+                  <span>75,601</span>
+                </p>
+              </div>
+            </li>
+            <li class="list_info">
+              <div class="list_address">
+                <p class="list_address_p">
+                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
+                </p>
+              </div>
+              <div class="list_point">
+                <p class="list_point_p">
+                  <span>75,601</span>
+                </p>
+              </div>
+            </li>
             <li class="list_info">
               <div class="list_address">
                 <p class="list_address_p">
@@ -466,10 +520,12 @@ h3 {
 }
 .list_info {
   border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'pixelmix-bold-2';
+  opacity: 0.8;
 }
 .list_address {
   align-items: center;
@@ -563,10 +619,14 @@ h3 {
   align-items: center;
   width: 100%;
 }
+.user_id_after {
+  font-family: 'pixelmix-bold-2';
+}
 .out_btn {
   background-color: transparent;
-  color: black;
+  color: #ffffff;
   border: none;
+  font-family: 'pixelmix-bold-2';
 }
 .after_wallet {
   margin-bottom: 12px;
@@ -591,7 +651,7 @@ h3 {
   margin-bottom: 10px;
 }
 .after_num {
-  font-size: 36px;
+  font-size: 30px;
 }
 .invite_link {
   background-color: transparent;
@@ -603,8 +663,22 @@ h3 {
   font-family: 'Minecrafter_Reg';
   margin-right: 6px;
 }
+.copy-success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: gray;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .after_invite {
   display: flex;
+  cursor: pointer;
 }
 .copy_link {
   cursor: pointer;
