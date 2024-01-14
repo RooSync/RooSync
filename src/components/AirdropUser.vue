@@ -12,14 +12,47 @@ import {
   signInWithPopup,
   TwitterAuthProvider
 } from 'firebase/auth'
+import { getFirestore, collection, getDocs } from 'firebase/firestore'
+const db = getFirestore()
+const usersList = ref([])
 
+const fetchAllUsers = async () => {
+  const querySnapshot = await getDocs(collection(db, 'users'))
+  const users = []
+  querySnapshot.forEach((doc) => {
+    users.push(doc.data())
+  })
+  return users
+}
+onMounted(async () => {
+  const authInstance = getAuth()
+  const currentUser = authInstance.currentUser
+  if (currentUser) {
+    user.value = currentUser.displayName
+    isUserLoggedIn.value = true
+  } else {
+    user.value = null
+    isUserLoggedIn.value = false
+  }
+
+  onAuthStateChanged(auth, (firebaseUser) => {
+    if (firebaseUser) {
+      user.value = firebaseUser.displayName
+      isUserLoggedIn.value = true
+    } else {
+      user.value = null
+      isUserLoggedIn.value = false
+    }
+  })
+  usersList.value = await fetchAllUsers()
+})
 // announcement
 const showAnnouncement = ref(false)
 const toggleAnnouncement = () => {
   showAnnouncement.value = !showAnnouncement.value
 }
 // twitter verify login
-const usersList = ref([])
+
 const showAllUsers = ref(false)
 const user = ref('')
 const isUserLoggedIn = ref(false)
@@ -38,10 +71,18 @@ const handleSignInTwitter = () => {
       if (fetchedUserData) {
         userData.value = fetchedUserData
       }
-      usersList.value.push({
-        username: result.user.displayName,
-        avatar: result.user.photoURL
-      })
+
+      const userExists = usersList.value.some((u) => u.uid === result.user.uid)
+      if (!userExists) {
+        const newUser = {
+          uid: result.user.uid,
+          username: result.user.displayName,
+          avatar: result.user.photoURL
+        }
+
+        usersList.value.push(newUser)
+        await saveUserToFirestore(newUser)
+      }
     })
     .catch((error) => {
       console.error(error)
@@ -51,28 +92,6 @@ const displayedUsers = computed(() => {
   return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
 })
 
-onMounted(() => {
-  const authInstance = getAuth()
-  const currentUser = authInstance.currentUser
-  if (currentUser) {
-    user.value = currentUser.displayName
-    isUserLoggedIn.value = true
-  } else {
-    user.value = null
-    isUserLoggedIn.value = false
-  }
-})
-onMounted(() => {
-  onAuthStateChanged(auth, (firebaseUser) => {
-    if (firebaseUser) {
-      user.value = firebaseUser.displayName
-      isUserLoggedIn.value = true
-    } else {
-      user.value = null
-      isUserLoggedIn.value = false
-    }
-  })
-})
 const handleSignOut = () => {
   signOut(auth)
     .then(() => {
