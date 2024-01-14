@@ -18,11 +18,14 @@ const usersList = ref([])
 
 const fetchAllUsers = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
-  const users = []
+  const fetchedUsers = []
   querySnapshot.forEach((doc) => {
-    users.push(doc.data())
+    const userData = doc.data()
+    if (!usersList.value.some((u) => u.uid === userData.uid)) {
+      fetchedUsers.push(userData)
+    }
   })
-  return users
+  return fetchedUsers
 }
 onMounted(async () => {
   const authInstance = getAuth()
@@ -180,7 +183,7 @@ const copyInviteLink = () => {
           <div class="wallet mb-3">
             <span class="flex flex-col"
               ><p class="Primary_Wallet">Primary Wallet:</p>
-              <p class="p_wallet">xxx...xxx</p></span
+              <p class="p_wallet">0xx...xxx</p></span
             >
           </div>
           <div class="bg_info">
