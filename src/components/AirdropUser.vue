@@ -180,7 +180,7 @@ const copyInviteLink = () => {
           <div class="wallet mb-3">
             <span class="flex flex-col"
               ><p class="Primary_Wallet">Primary Wallet:</p>
-              <p class="p_wallet">0xE2F6D...4B1A79</p></span
+              <p class="p_wallet">xxx...xxx</p></span
             >
           </div>
           <div class="bg_info">
