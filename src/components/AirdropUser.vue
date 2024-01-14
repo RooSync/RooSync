@@ -1,11 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import {
   auth,
   saveUserToFirestore,
   fetchUserData
 } from '@/utils/firebaseConfig'
-import { signInWithPopup, TwitterAuthProvider } from 'firebase/auth'
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  TwitterAuthProvider
+} from 'firebase/auth'
 
 // announcement
 const showAnnouncement = ref(false)
@@ -38,6 +43,28 @@ const handleSignInTwitter = () => {
 const handleSignOut = () => {
   isUserLoggedIn.value = false
 }
+onMounted(() => {
+  const authInstance = getAuth()
+  const currentUser = authInstance.currentUser
+  if (currentUser) {
+    user.value = currentUser.displayName
+    isUserLoggedIn.value = true
+  } else {
+    user.value = null
+    isUserLoggedIn.value = false
+  }
+})
+onMounted(() => {
+  onAuthStateChanged(auth, (firebaseUser) => {
+    if (firebaseUser) {
+      user.value = firebaseUser.displayName
+      isUserLoggedIn.value = true
+    } else {
+      user.value = null
+      isUserLoggedIn.value = false
+    }
+  })
+})
 // copy
 const inviteLink = ref('https://roosync.com/')
 const showCopySuccess = ref(false)
@@ -137,7 +164,7 @@ const copyInviteLink = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p class="user_id_after" v-if="isUserLoggedIn">@{{ user }}</p>
+                <p class="user_id_after" v-if="user">@{{ user }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
