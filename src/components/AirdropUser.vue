@@ -222,7 +222,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">58,000</span>
+              <span class="after_num">{{ user.points }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -309,7 +309,7 @@ const copyInviteLink = () => {
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>75,601</span>
+                  <span>{{ user.points }}</span>
                 </p>
               </div>
             </li>
