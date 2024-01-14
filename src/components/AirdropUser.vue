@@ -8,6 +8,7 @@ import {
 import {
   getAuth,
   onAuthStateChanged,
+  signOut,
   signInWithPopup,
   TwitterAuthProvider
 } from 'firebase/auth'
@@ -40,9 +41,7 @@ const handleSignInTwitter = () => {
       console.error(error)
     })
 }
-const handleSignOut = () => {
-  isUserLoggedIn.value = false
-}
+
 onMounted(() => {
   const authInstance = getAuth()
   const currentUser = authInstance.currentUser
@@ -65,6 +64,16 @@ onMounted(() => {
     }
   })
 })
+const handleSignOut = () => {
+  signOut(auth)
+    .then(() => {
+      isUserLoggedIn.value = false
+      user.value = null
+    })
+    .catch((error) => {
+      console.error('Error signing out: ', error)
+    })
+}
 // copy
 const inviteLink = ref('https://roosync.com/')
 const showCopySuccess = ref(false)
