@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import {
   auth,
   saveUserToFirestore,
@@ -19,6 +19,8 @@ const toggleAnnouncement = () => {
   showAnnouncement.value = !showAnnouncement.value
 }
 // twitter verify login
+const usersList = ref([])
+const showAllUsers = ref(false)
 const user = ref('')
 const isUserLoggedIn = ref(false)
 const isSignedIn = ref(false)
@@ -36,11 +38,18 @@ const handleSignInTwitter = () => {
       if (fetchedUserData) {
         userData.value = fetchedUserData
       }
+      usersList.value.push({
+        username: result.user.displayName,
+        avatar: result.user.photoURL
+      })
     })
     .catch((error) => {
       console.error(error)
     })
 }
+const displayedUsers = computed(() => {
+  return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
+})
 
 onMounted(() => {
   const authInstance = getAuth()
@@ -269,118 +278,11 @@ const copyInviteLink = () => {
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
             <hr class="line" />
-            <li class="list_info">
+            <li class="list_info" v-for="user in displayedUsers" :key="user.id">
               <div class="list_address">
+                <img :src="user.avatar" alt="User Avatar" class="user-avatar" />
                 <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
-                </p>
-              </div>
-              <div class="list_point">
-                <p class="list_point_p">
-                  <span>75,601</span>
-                </p>
-              </div>
-            </li>
-            <li class="list_info">
-              <div class="list_address">
-                <p class="list_address_p">
-                  0x5A27d268e830655E908a0a2C3B24F572695AF5e8
+                  {{ user.username }}
                 </p>
               </div>
               <div class="list_point">
@@ -392,7 +294,9 @@ const copyInviteLink = () => {
           </ul>
           <div class="view_all">
             <button class="view_btn" type="button">
-              <p class="view_p">View All Top Accounts</p>
+              <p class="view_p">
+                {{ showAllUsers.value ? 'Hide' : 'View All Top Accounts' }}
+              </p>
             </button>
           </div>
         </div>
@@ -573,7 +477,15 @@ h3 {
   opacity: 0.8;
 }
 .list_address {
+  height: 50%;
+  display: flex;
   align-items: center;
+}
+.user-avatar {
+  height: 100%;
+  width: auto;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 .view_all {
   height: 30px;
@@ -730,5 +642,13 @@ h3 {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+.top_list {
+  max-height: 558px;
+  overflow-y: auto;
+}
+
+.top_list::-webkit-scrollbar {
+  display: none;
 }
 </style>
