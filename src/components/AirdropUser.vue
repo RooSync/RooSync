@@ -22,15 +22,12 @@ const providerTwitter = new TwitterAuthProvider()
 const handleSignInTwitter = () => {
   signInWithPopup(auth, providerTwitter)
     .then(async (result) => {
-      // 更新用户信息
       user.value = result.user.displayName
       isSignedIn.value = true
       isUserLoggedIn.value = true
 
-      // 获取并展示用户数据
       const fetchedUserData = await fetchUserData(result.user.uid)
       if (fetchedUserData) {
-        // 假设您有一个响应式变量来存储获取的用户数据
         userData.value = fetchedUserData
       }
     })
@@ -140,7 +137,7 @@ const copyInviteLink = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p class="user_id_after" v-if="user">@{{ user }}</p>
+                <p class="user_id_after" v-if="isUserLoggedIn">@{{ user }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
