@@ -20,6 +20,11 @@ const router = createRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
+  const referrerId = to.query.ref
+
+  if (referrerId) {
+    sessionStorage.setItem('referrerId', referrerId)
+  }
   if (to.path !== '/welcome' && from.matched.length === 0) {
     next('/welcome')
   } else {
