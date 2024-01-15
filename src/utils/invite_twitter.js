@@ -12,6 +12,7 @@ export function parseReferralLink() {
 
 export async function updateReferrerPoints() {
   const referrerId = sessionStorage.getItem('referrerId')
+  console.log('user ID:', referrerId)
   if (referrerId) {
     const referrerRef = doc(db, 'users', referrerId)
     const referrerSnap = await getDoc(referrerRef)

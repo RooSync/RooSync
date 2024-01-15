@@ -92,6 +92,7 @@ const handleSignInTwitter = () => {
         usersList.value.push(newUser)
         await saveUserToFirestore(newUser)
       }
+      console.log('logined')
       onTwitterLoginSuccess()
     })
     .catch((error) => {
