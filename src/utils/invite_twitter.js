@@ -3,10 +3,15 @@ import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 const db = getFirestore()
 
 export function parseReferralLink() {
+  console.log('正在执行 parseReferralLink 函数')
   const urlParams = new URLSearchParams(window.location.search)
   const referrerId = urlParams.get('ref')
+  console.log('解析到的 referrerId:', referrerId)
   if (referrerId) {
     sessionStorage.setItem('referrerId', referrerId)
+    console.log('referrerId 已存储到 sessionStorage')
+  } else {
+    console.log('未找到 referrerId') // 日志：未找到 referrerId
   }
 }
 
