@@ -22,14 +22,15 @@ const usersList = ref([])
 
 const fetchAllUsers = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
-  const fetchedUsers = []
+  usersList.value = [] // 清空当前列表
+
   querySnapshot.forEach((doc) => {
     const userData = doc.data()
-    if (!usersList.value.some((u) => u.uid === userData.uid)) {
-      fetchedUsers.push(userData)
-    }
+    usersList.value.push({
+      ...userData,
+      points: userData.points || 0 // 确保积分字段存在，如果没有则默认为0
+    })
   })
-  return fetchedUsers
 }
 onMounted(async () => {
   const authInstance = getAuth()
@@ -260,7 +261,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ userPoints }}</span>
+              <span class="after_num">{{ user.points }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -338,7 +339,11 @@ const copyInviteLink = () => {
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
             <hr class="line" />
-            <li class="list_info" v-for="user in displayedUsers" :key="user.id">
+            <li
+              class="list_info"
+              v-for="user in displayedUsers"
+              :key="user.uid"
+            >
               <div class="list_address">
                 <img :src="user.avatar" alt="User Avatar" class="user-avatar" />
                 <p class="list_address_p">
@@ -347,7 +352,7 @@ const copyInviteLink = () => {
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>{{ userPoints }}</span>
+                  <span>{{ user.points }}</span>
                 </p>
               </div>
             </li>
