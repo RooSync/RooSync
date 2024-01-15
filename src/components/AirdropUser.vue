@@ -12,6 +12,7 @@ import {
   signInWithPopup,
   TwitterAuthProvider
 } from 'firebase/auth'
+import { useUserPoints } from '@/utils/useUserPoints'
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 const db = getFirestore()
 const usersList = ref([])
@@ -105,8 +106,9 @@ const handleSignOut = () => {
       console.error('Error signing out: ', error)
     })
 }
+const { userPoints, inviteLink } = useUserPoints()
 // copy
-const inviteLink = ref('https://roosync.com/')
+
 const showCopySuccess = ref(false)
 
 const copyInviteLink = () => {
@@ -222,7 +224,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ user.points }}</span>
+              <span class="after_num">{{ userPoints }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -249,7 +251,7 @@ const copyInviteLink = () => {
               <span class="after_num">invitation link</span>
             </div>
             <div class="after_invite" @click="copyInviteLink">
-              <button class="invite_link">https://roosync.com/</button>
+              <button class="invite_link">{{ inviteLink }}</button>
               <div class="copy_link">
                 <svg
                   t="1705060289558"
@@ -309,7 +311,7 @@ const copyInviteLink = () => {
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>{{ user.points }}</span>
+                  <span>{{ userPoints }}</span>
                 </p>
               </div>
             </li>
