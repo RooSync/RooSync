@@ -17,6 +17,7 @@ import {
   parseReferralLink,
   onTwitterLoginSuccess
 } from '@/utils/invite_twitter.js'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 const db = getFirestore()
@@ -68,7 +69,16 @@ const isUserLoggedIn = ref(false)
 const isSignedIn = ref(false)
 const userData = ref(null)
 const providerTwitter = new TwitterAuthProvider()
+// 定义更新积分的函数
+async function updateReferrerPoints(referrerId) {
+  const referrerRef = doc(db, 'users', referrerId)
+  const referrerSnap = await getDoc(referrerRef)
 
+  if (referrerSnap.exists()) {
+    const currentPoints = referrerSnap.data().points || 0
+    await setDoc(referrerRef, { points: currentPoints + 10 }, { merge: true })
+  }
+}
 const handleSignInTwitter = () => {
   signInWithPopup(auth, providerTwitter)
     .then(async (result) => {
@@ -94,6 +104,11 @@ const handleSignInTwitter = () => {
       }
       console.log('logined')
       onTwitterLoginSuccess()
+      const referrerId = sessionStorage.getItem('referrerId')
+      if (referrerId) {
+        // 如果存在 referrerId，则更新邀请者的积分
+        await updateReferrerPoints(referrerId)
+      }
     })
     .catch((error) => {
       console.error(error)
