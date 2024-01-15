@@ -21,16 +21,13 @@ const auth = getAuth(firebaseApp)
 const saveUserToFirestore = async (userData) => {
   const userRef = doc(db, 'users', userData.uid)
 
-  // 检查用户是否已存在
   const docSnap = await getDoc(userRef)
 
   if (!docSnap.exists()) {
-    // 如果用户不存在，则添加新用户
     await setDoc(userRef, userData)
-    console.log('新用户信息已保存到 Firestore')
+    console.log('Firestore')
   } else {
-    // 如果用户已存在，您可以选择更新信息
-    console.log('用户已存在，信息未更新')
+    console.log('User already exists')
   }
 }
 const fetchUserData = async (userId) => {

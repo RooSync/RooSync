@@ -13,6 +13,11 @@ import {
   TwitterAuthProvider
 } from 'firebase/auth'
 import { useUserPoints } from '@/utils/useUserPoints'
+import {
+  parseReferralLink,
+  onTwitterLoginSuccess
+} from '@/utils/invite_twitter.js'
+
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 const db = getFirestore()
 const usersList = ref([])
@@ -38,7 +43,7 @@ onMounted(async () => {
     user.value = null
     isUserLoggedIn.value = false
   }
-
+  parseReferralLink()
   onAuthStateChanged(auth, (firebaseUser) => {
     if (firebaseUser) {
       user.value = firebaseUser.displayName
@@ -87,6 +92,7 @@ const handleSignInTwitter = () => {
         usersList.value.push(newUser)
         await saveUserToFirestore(newUser)
       }
+      onTwitterLoginSuccess()
     })
     .catch((error) => {
       console.error(error)
@@ -642,8 +648,9 @@ h3 {
   color: #ffffff;
   font-size: 16px;
   opacity: 0.5;
-  font-family: 'Minecrafter_Reg';
+  font-family: 'pixelmix-bold-2';
   margin-right: 6px;
+  text-align: left;
 }
 .copy-success-message {
   position: fixed;
