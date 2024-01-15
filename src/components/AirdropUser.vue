@@ -69,16 +69,25 @@ const isUserLoggedIn = ref(false)
 const isSignedIn = ref(false)
 const userData = ref(null)
 const providerTwitter = new TwitterAuthProvider()
-// 定义更新积分的函数
-async function updateReferrerPoints(referrerId) {
-  const referrerRef = doc(db, 'users', referrerId)
-  const referrerSnap = await getDoc(referrerRef)
 
-  if (referrerSnap.exists()) {
-    const currentPoints = referrerSnap.data().points || 0
-    await setDoc(referrerRef, { points: currentPoints + 10 }, { merge: true })
+async function updateReferrerPoints(referrerId, invitedUserId) {
+  const invitedUserRef = doc(db, 'users', invitedUserId)
+  const invitedUserSnap = await getDoc(invitedUserRef)
+
+  if (invitedUserSnap.exists() && !invitedUserSnap.data().referrerRewarded) {
+    // 更新被邀请者的 referrerRewarded 字段
+    await setDoc(invitedUserRef, { referrerRewarded: true }, { merge: true })
+
+    // 更新邀请者的积分
+    const referrerRef = doc(db, 'users', referrerId)
+    const referrerSnap = await getDoc(referrerRef)
+    if (referrerSnap.exists()) {
+      const currentPoints = referrerSnap.data().points || 0
+      await setDoc(referrerRef, { points: currentPoints + 10 }, { merge: true })
+    }
   }
 }
+
 const handleSignInTwitter = () => {
   signInWithPopup(auth, providerTwitter)
     .then(async (result) => {
@@ -96,7 +105,8 @@ const handleSignInTwitter = () => {
         const newUser = {
           uid: result.user.uid,
           username: result.user.displayName,
-          avatar: result.user.photoURL
+          avatar: result.user.photoURL,
+          referrerRewarded: false
         }
 
         usersList.value.push(newUser)
@@ -106,8 +116,8 @@ const handleSignInTwitter = () => {
       onTwitterLoginSuccess()
       const referrerId = sessionStorage.getItem('referrerId')
       if (referrerId) {
-        // 如果存在 referrerId，则更新邀请者的积分
-        await updateReferrerPoints(referrerId)
+        const invitedUserId = result.user.uid // 被邀请用户的 ID
+        await updateReferrerPoints(referrerId, invitedUserId)
       }
     })
     .catch((error) => {
