@@ -29,6 +29,6 @@ export async function updateReferrerPoints() {
   }
 }
 
-export function onTwitterLoginSuccess() {
-  updateReferrerPoints()
-}
+// export function onTwitterLoginSuccess() {
+//   updateReferrerPoints()
+// }

@@ -13,10 +13,7 @@ import {
   TwitterAuthProvider
 } from 'firebase/auth'
 import { useUserPoints } from '@/utils/useUserPoints'
-import {
-  parseReferralLink,
-  onTwitterLoginSuccess
-} from '@/utils/invite_twitter.js'
+import { parseReferralLink } from '@/utils/invite_twitter.js'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
@@ -113,11 +110,18 @@ const handleSignInTwitter = () => {
         await saveUserToFirestore(newUser)
       }
       console.log('logined')
-      onTwitterLoginSuccess()
       const referrerId = sessionStorage.getItem('referrerId')
       if (referrerId) {
         const invitedUserId = result.user.uid // 被邀请用户的 ID
-        await updateReferrerPoints(referrerId, invitedUserId)
+        // 检查是否是首次登录，以决定是否更新积分
+        const invitedUserRef = doc(db, 'users', invitedUserId)
+        const invitedUserSnap = await getDoc(invitedUserRef)
+        if (
+          invitedUserSnap.exists() &&
+          !invitedUserSnap.data().referrerRewarded
+        ) {
+          await updateReferrerPoints(referrerId, invitedUserId)
+        }
       }
     })
     .catch((error) => {
