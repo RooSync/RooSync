@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
-import { useWalletStore } from '@/stores/wallet.js'
+// import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
 import {
   auth,
   saveUserToFirestore,
@@ -33,22 +33,6 @@ const fetchAllUsers = async () => {
     })
   })
 }
-const walletStore = useWalletStore()
-const abbreviatedWalletAddress = computed(() => {
-  if (walletStore.walletAddress.length > 10) {
-    return `${walletStore.walletAddress.substring(
-      0,
-      6
-    )}...${walletStore.walletAddress.substring(
-      walletStore.walletAddress.length - 4
-    )}`
-  }
-  return walletStore.walletAddress
-})
-const { totalUsers } = useUserPoints()
-// const formattedTotalUsers = computed(() => {
-//   return `${(totalUsers.value / 1000).toFixed(1)}k`
-// })
 onMounted(async () => {
   const authInstance = getAuth()
   const currentUser = authInstance.currentUser
@@ -70,7 +54,6 @@ onMounted(async () => {
     }
   })
   usersList.value = await fetchAllUsers()
-  console.log('Total Users:', totalUsers.value)
 })
 const sortedUsersList = computed(() => {
   return [...usersList.value].sort((a, b) => b.points - a.points)
@@ -248,8 +231,8 @@ const copyInviteLink = () => {
           </div>
           <div class="wallet mb-3">
             <span class="flex flex-col"
-              ><p class="Primary_Wallet">Wallet:</p>
-              <p class="p_wallet">{{ abbreviatedWalletAddress }}</p></span
+              ><p class="Primary_Wallet">Primary Wallet:</p>
+              <p class="p_wallet">0xx...xxx</p></span
             >
           </div>
           <div class="bg_info">
@@ -281,7 +264,7 @@ const copyInviteLink = () => {
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>
-                <p class="abb_address">{{ abbreviatedWalletAddress }}</p>
+                <p class="abb_address">0x...xxxx</p>
               </span>
             </div>
           </div>
@@ -296,10 +279,10 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">#{{ currentUserRank }}</span>
+              <span class="after_num">{{ currentUserRank }}</span>
             </div>
             <div class="points_title">
-              <p>Your Rank</p>
+              <p>your rank</p>
             </div>
           </div>
           <div class="after_points">
@@ -360,7 +343,7 @@ const copyInviteLink = () => {
               Top Accounts
             </h3>
             <p class="MuiTypography-root MuiTypography-body1 flex css-mmxf0c">
-              Total Accounts: {{ totalUsers }}
+              Total Accounts: 30k
             </p>
           </div>
           <ul class="top_list">
@@ -689,10 +672,6 @@ h3 {
 }
 .abb_address {
   font-size: 18px;
-  font-family: 'pixelmix-bold-2';
-}
-.points_title p {
-  font-family: 'pixelmix-bold-2';
 }
 .after_line {
   border-bottom: 1px solid #505050;
