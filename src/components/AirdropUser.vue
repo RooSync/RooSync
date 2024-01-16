@@ -27,7 +27,10 @@ const fetchAllUsers = async () => {
   querySnapshot.forEach((doc) => {
     const userData = doc.data()
     if (!usersList.value.some((u) => u.uid === userData.uid)) {
-      fetchedUsers.push(userData)
+      fetchedUsers.push({
+        ...userData,
+        points: userData.points || 0 // 假设积分字段名为 points
+      })
     }
   })
   return fetchedUsers
@@ -261,7 +264,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ userPoints }}</span>
+              <span class="after_num">{{ user.points }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -348,7 +351,7 @@ const copyInviteLink = () => {
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>{{ userPoints }}</span>
+                  <span>{{ user.points }}</span>
                 </p>
               </div>
             </li>
