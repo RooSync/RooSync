@@ -27,12 +27,10 @@ const fetchAllUsers = async () => {
   querySnapshot.forEach((doc) => {
     const userData = doc.data()
     if (!usersList.value.some((u) => u.uid === userData.uid)) {
-      fetchedUsers.push({
-        ...userData,
-        points: userData.points || 0 // 假设积分字段名为 points
-      })
+      fetchedUsers.push(userData)
     }
   })
+  fetchedUsers.sort((a, b) => b.points - a.points)
   return fetchedUsers
 }
 const currentUser = reactive({
@@ -74,6 +72,11 @@ onMounted(async () => {
 
   usersList.value = await fetchAllUsers()
 })
+const calculateRank = () => {
+  // 找到当前用户在排序后的列表中的位置
+  const rank = usersList.value.findIndex((u) => u.uid === currentUser.uid) + 1
+  return rank
+}
 // announcement
 const showAnnouncement = ref(false)
 const toggleAnnouncement = () => {
@@ -289,7 +292,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">5,000</span>
+              <span class="after_num">{{ calculateRank() }}</span>
             </div>
             <div class="points_title">
               <p>your rank</p>
