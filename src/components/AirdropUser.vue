@@ -286,7 +286,7 @@ const copyInviteLink = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p class="user_id_after" v-if="user">@</p>
+                <p class="user_id_after" v-if="user">@{{ user }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
@@ -562,9 +562,7 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
-.top_title p {
-  font-family: 'pixelmix-bold-2';
-}
+
 .line {
   margin-bottom: 24px;
   opacity: 0.5;
@@ -756,5 +754,8 @@ h3 {
 
 .top_list::-webkit-scrollbar {
   display: none;
+}
+.top_title p {
+  font-family: 'pixelmix-bold-2';
 }
 </style>
