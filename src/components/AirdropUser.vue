@@ -27,10 +27,10 @@ const fetchAllUsers = async () => {
   querySnapshot.forEach((doc) => {
     const userData = doc.data()
     if (!usersList.value.some((u) => u.uid === userData.uid)) {
-      fetchedUsers.push(userData)
+      fetchedUsers.push({ points: 0, ...userData })
     }
   })
-  fetchedUsers.sort((a, b) => b.points - a.points)
+  fetchedUsers.sort((a, b) => (b.points || 0) - (a.points || 0))
   console.log('Sorted Users:', fetchedUsers)
   return fetchedUsers
 }
@@ -169,7 +169,7 @@ const handleSignOut = () => {
       console.error('Error signing out: ', error)
     })
 }
-const { userPoints, inviteLink } = useUserPoints()
+const { inviteLink } = useUserPoints()
 // copy
 
 const showCopySuccess = ref(false)
