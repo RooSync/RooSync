@@ -22,15 +22,15 @@ const usersList = ref([])
 
 const fetchAllUsers = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
-  usersList.value = [] // 清空当前列表
 
+  const fetchedUsers = []
   querySnapshot.forEach((doc) => {
     const userData = doc.data()
-    usersList.value.push({
-      ...userData,
-      points: userData.points || 0 // 确保积分字段存在，如果没有则默认为0
-    })
+    if (!usersList.value.some((u) => u.uid === userData.uid)) {
+      fetchedUsers.push(userData)
+    }
   })
+  return fetchedUsers
 }
 onMounted(async () => {
   const authInstance = getAuth()
@@ -53,9 +53,6 @@ onMounted(async () => {
     }
   })
   usersList.value = await fetchAllUsers()
-})
-const sortedUsersList = computed(() => {
-  return [...usersList.value].sort((a, b) => b.points - a.points)
 })
 // announcement
 const showAnnouncement = ref(false)
@@ -132,9 +129,9 @@ const handleSignInTwitter = () => {
       console.error(error)
     })
 }
-// const displayedUsers = computed(() => {
-//   return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
-// })
+const displayedUsers = computed(() => {
+  return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
+})
 
 const handleSignOut = () => {
   signOut(auth)
@@ -146,7 +143,7 @@ const handleSignOut = () => {
       console.error('Error signing out: ', error)
     })
 }
-const { inviteLink } = useUserPoints()
+const { userPoints, inviteLink } = useUserPoints()
 // copy
 
 const showCopySuccess = ref(false)
@@ -264,7 +261,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ userData.points }}</span>
+              <span class="after_num">{{ userPoints }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -342,11 +339,7 @@ const copyInviteLink = () => {
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
             <hr class="line" />
-            <li
-              class="list_info"
-              v-for="user in sortedUsersList.slice(0, 10)"
-              :key="user.uid"
-            >
+            <li class="list_info" v-for="user in displayedUsers" :key="user.id">
               <div class="list_address">
                 <img :src="user.avatar" alt="User Avatar" class="user-avatar" />
                 <p class="list_address_p">
@@ -355,12 +348,12 @@ const copyInviteLink = () => {
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>{{ user.points }}</span>
+                  <span>{{ userPoints }}</span>
                 </p>
               </div>
             </li>
           </ul>
-          <div>
+          <div class="view_all">
             <button class="view_btn" type="button">
               <p class="view_p">
                 {{ showAllUsers.value ? 'Hide' : 'View All Top Accounts' }}
