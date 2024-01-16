@@ -70,6 +70,7 @@ onMounted(async () => {
     }
   })
   usersList.value = await fetchAllUsers()
+  console.log('Total Users:', totalUsers.value)
 })
 const sortedUsersList = computed(() => {
   return [...usersList.value].sort((a, b) => b.points - a.points)
