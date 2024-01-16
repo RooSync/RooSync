@@ -24,7 +24,12 @@ export async function updateReferrerPoints() {
 
     if (referrerSnap.exists()) {
       const currentPoints = referrerSnap.data().points || 0
-      await setDoc(referrerRef, { points: currentPoints + 10 }, { merge: true })
+      const currentInvitesCount = referrerSnap.data().invitesCount || 0
+      await setDoc(
+        referrerRef,
+        { points: currentPoints + 10, invitesCount: currentInvitesCount + 1 },
+        { merge: true }
+      )
     }
   }
 }

@@ -17,8 +17,14 @@ import { parseReferralLink } from '@/utils/invite_twitter.js'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
+const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
+
+const fetchTotalUsersCount = async () => {
+  const querySnapshot = await getDocs(collection(db, 'users'))
+  totalUsersCount.value = querySnapshot.size // 更新总用户数
+}
 
 const fetchAllUsers = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
@@ -36,9 +42,11 @@ const fetchAllUsers = async () => {
 }
 const currentUser = reactive({
   displayName: null,
-  points: 0
+  points: 0,
+  invitesCount: 0
 })
 onMounted(async () => {
+  await fetchTotalUsersCount()
   const authInstance = getAuth()
   const firebaseCurrentUser = authInstance.currentUser
   if (firebaseCurrentUser) {
@@ -61,6 +69,7 @@ onMounted(async () => {
       const fetchedUserData = await fetchUserData(firebaseUser.uid)
       currentUser.displayName = firebaseUser.displayName
       currentUser.points = fetchedUserData.points || 0
+      currentUser.invitesCount = fetchedUserData.invitesCount || 0
       currentUser.uid = firebaseUser.uid
       console.log('Current User:', currentUser)
       // 更新其他需要的字段
@@ -295,15 +304,15 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ calculateRank() }}</span>
+              <span class="after_num"># {{ calculateRank() }}</span>
             </div>
             <div class="points_title">
-              <p>your rank</p>
+              <p>Your Rank</p>
             </div>
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">12</span>
+              <span class="after_num">{{ currentUser.invitesCount }}</span>
             </div>
             <div class="points_title">
               <p>Confirmed invites</p>
@@ -311,7 +320,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">invitation link</span>
+              <span class="after_num">Inv link</span>
             </div>
             <div class="after_invite" @click="copyInviteLink">
               <button class="invite_link">{{ inviteLink }}</button>
@@ -358,9 +367,7 @@ const copyInviteLink = () => {
             <h3 class="MuiTypography-root MuiTypography-headline2 css-1qxtt">
               Top Accounts
             </h3>
-            <p class="MuiTypography-root MuiTypography-body1 flex css-mmxf0c">
-              Total Accounts: 30k
-            </p>
+            <p class="Total Accounts">Total Accounts: {{ totalUsersCount }}</p>
           </div>
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
