@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, reactive } from 'vue'
 import {
   auth,
   saveUserToFirestore,
@@ -35,26 +35,43 @@ const fetchAllUsers = async () => {
   })
   return fetchedUsers
 }
+const currentUser = reactive({
+  displayName: null,
+  points: 0
+})
 onMounted(async () => {
   const authInstance = getAuth()
-  const currentUser = authInstance.currentUser
-  if (currentUser) {
-    user.value = currentUser.displayName
+  const firebaseCurrentUser = authInstance.currentUser
+  if (firebaseCurrentUser) {
+    const fetchedUserData = await fetchUserData(firebaseCurrentUser.uid)
+    currentUser.displayName = firebaseCurrentUser.displayName
+    currentUser.points = fetchedUserData.points || 0
+    // 更新其他需要的字段
     isUserLoggedIn.value = true
   } else {
-    user.value = null
+    currentUser.displayName = null
+    currentUser.points = 0
+    // 重置其他字段
     isUserLoggedIn.value = false
   }
+
   parseReferralLink()
-  onAuthStateChanged(auth, (firebaseUser) => {
+
+  onAuthStateChanged(auth, async (firebaseUser) => {
     if (firebaseUser) {
-      user.value = firebaseUser.displayName
+      const fetchedUserData = await fetchUserData(firebaseUser.uid)
+      currentUser.displayName = firebaseUser.displayName
+      currentUser.points = fetchedUserData.points || 0
+      // 更新其他需要的字段
       isUserLoggedIn.value = true
     } else {
-      user.value = null
+      currentUser.displayName = null
+      currentUser.points = 0
+      // 重置其他字段
       isUserLoggedIn.value = false
     }
   })
+
   usersList.value = await fetchAllUsers()
 })
 // announcement
@@ -264,7 +281,7 @@ const copyInviteLink = () => {
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ user.points }}</span>
+              <span class="after_num">{{ currentUser.points }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
