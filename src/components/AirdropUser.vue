@@ -556,6 +556,9 @@ h3 {
   justify-content: space-between;
   align-items: center;
 }
+.top_title p {
+  font-family: 'pixelmix-bold-2';
+}
 .line {
   margin-bottom: 24px;
   opacity: 0.5;

@@ -24,6 +24,7 @@ async function onConnect() {
     showCustomButton.value = false
     showButtonBorders.value = true
     walletStore.setWalletAddress(address)
+    console.log('Set wallet address:', walletStore.walletAddress)
   } else {
     walletConnected.value = false
     showCustomButton.value = true
