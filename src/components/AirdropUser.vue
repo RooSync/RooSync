@@ -286,7 +286,9 @@ const copyInviteLink = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p class="user_id_after" v-if="user">@{{ user }}</p>
+                <p class="user_id_after" v-if="user">
+                  @{{ useruser.username }}
+                </p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
