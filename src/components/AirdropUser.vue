@@ -31,6 +31,7 @@ const fetchAllUsers = async () => {
     }
   })
   fetchedUsers.sort((a, b) => b.points - a.points)
+  console.log('Sorted Users:', fetchedUsers)
   return fetchedUsers
 }
 const currentUser = reactive({
@@ -60,6 +61,8 @@ onMounted(async () => {
       const fetchedUserData = await fetchUserData(firebaseUser.uid)
       currentUser.displayName = firebaseUser.displayName
       currentUser.points = fetchedUserData.points || 0
+      currentUser.uid = firebaseUser.uid
+      console.log('Current User:', currentUser)
       // 更新其他需要的字段
       isUserLoggedIn.value = true
     } else {
