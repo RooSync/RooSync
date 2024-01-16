@@ -121,50 +121,56 @@ async function updateReferrerPoints(referrerId, invitedUserId) {
       await setDoc(referrerRef, { points: currentPoints + 10 }, { merge: true })
     }
   }
+  await updateUserData()
 }
+async function updateUserData() {
+  usersList.value = await fetchAllUsers()
 
-const handleSignInTwitter = () => {
-  signInWithPopup(auth, providerTwitter)
-    .then(async (result) => {
-      user.value = result.user.displayName
-      isSignedIn.value = true
-      isUserLoggedIn.value = true
+  currentUser.rank = calculateRank()
+}
+const handleSignInTwitter = async () => {
+  try {
+    const result = await signInWithPopup(auth, providerTwitter)
+    user.value = result.user.displayName
+    isSignedIn.value = true
+    isUserLoggedIn.value = true
 
-      const fetchedUserData = await fetchUserData(result.user.uid)
-      if (fetchedUserData) {
-        userData.value = fetchedUserData
+    const fetchedUserData = await fetchUserData(result.user.uid)
+    if (fetchedUserData) {
+      userData.value = fetchedUserData
+    }
+
+    const userExists = usersList.value.some((u) => u.uid === result.user.uid)
+    if (!userExists) {
+      const newUser = {
+        uid: result.user.uid,
+        username: result.user.displayName,
+        avatar: result.user.photoURL,
+        referrerRewarded: false
       }
 
-      const userExists = usersList.value.some((u) => u.uid === result.user.uid)
-      if (!userExists) {
-        const newUser = {
-          uid: result.user.uid,
-          username: result.user.displayName,
-          avatar: result.user.photoURL,
-          referrerRewarded: false
-        }
+      usersList.value.push(newUser)
+      await saveUserToFirestore(newUser)
+    }
 
-        usersList.value.push(newUser)
-        await saveUserToFirestore(newUser)
+    const referrerId = sessionStorage.getItem('referrerId')
+    if (referrerId) {
+      const invitedUserId = result.user.uid // 被邀请用户的 ID
+      const invitedUserRef = doc(db, 'users', invitedUserId)
+      const invitedUserSnap = await getDoc(invitedUserRef)
+      if (
+        invitedUserSnap.exists() &&
+        !invitedUserSnap.data().referrerRewarded
+      ) {
+        await updateReferrerPoints(referrerId, invitedUserId)
       }
-      console.log('logined')
-      const referrerId = sessionStorage.getItem('referrerId')
-      if (referrerId) {
-        const invitedUserId = result.user.uid // 被邀请用户的 ID
-        // 检查是否是首次登录，以决定是否更新积分
-        const invitedUserRef = doc(db, 'users', invitedUserId)
-        const invitedUserSnap = await getDoc(invitedUserRef)
-        if (
-          invitedUserSnap.exists() &&
-          !invitedUserSnap.data().referrerRewarded
-        ) {
-          await updateReferrerPoints(referrerId, invitedUserId)
-        }
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
+    }
+
+    // 更新用户数据
+    await updateUserData()
+  } catch (error) {
+    console.error(error)
+  }
 }
 const displayedUsers = computed(() => {
   return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
