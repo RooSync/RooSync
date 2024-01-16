@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
-// import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
 import {
   auth,
   saveUserToFirestore,
@@ -57,12 +56,6 @@ onMounted(async () => {
 })
 const sortedUsersList = computed(() => {
   return [...usersList.value].sort((a, b) => b.points - a.points)
-})
-const currentUserRank = computed(() => {
-  const index = sortedUsersList.value.findIndex(
-    (u) => u.uid === auth.currentUser.uid
-  )
-  return index >= 0 ? index + 1 : 'N/A'
 })
 // announcement
 const showAnnouncement = ref(false)
@@ -279,7 +272,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ currentUserRank }}</span>
+              <span class="after_num">5,000</span>
             </div>
             <div class="points_title">
               <p>your rank</p>
@@ -287,7 +280,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ userData.inviteCount || 0 }}</span>
+              <span class="after_num">12</span>
             </div>
             <div class="points_title">
               <p>Confirmed invites</p>
@@ -295,7 +288,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">Inv Link</span>
+              <span class="after_num">invitation link</span>
             </div>
             <div class="after_invite" @click="copyInviteLink">
               <button class="invite_link">{{ inviteLink }}</button>
