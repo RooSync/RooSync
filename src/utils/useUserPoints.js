@@ -1,4 +1,4 @@
-// useUserPoints.js 或者其他您选择的文件名
+// useUserPoints.js
 import { ref, onMounted } from 'vue'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import {
@@ -6,15 +6,17 @@ import {
   doc,
   onSnapshot,
   setDoc,
-  getDoc
+  getDoc,
+  collection,
+  getDocs
 } from 'firebase/firestore'
 
 const db = getFirestore()
 const auth = getAuth()
 const userPoints = ref(0)
 const inviteLink = ref('')
+const totalUsers = ref(0)
 
-// 获取所有用户的积分
 export function useUserPoints() {
   onMounted(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,7 +34,8 @@ export function useUserPoints() {
           }
         })
       }
-    })
+    }),
+      fetchTotalUsers()
   })
 
   return { userPoints, inviteLink }
@@ -49,4 +52,10 @@ async function generateAndSaveInviteLink(userId) {
     await setDoc(userRef, { inviteLink: newInviteLink }, { merge: true })
     inviteLink.value = newInviteLink
   }
+}
+// user total
+async function fetchTotalUsers() {
+  const usersCollection = collection(db, 'users')
+  const querySnapshot = await getDocs(usersCollection)
+  totalUsers.value = querySnapshot.size
 }

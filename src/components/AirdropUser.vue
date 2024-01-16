@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue'
+import { useWalletStore } from '@/stores/wallet.js'
 import {
   auth,
   saveUserToFirestore,
@@ -32,6 +33,22 @@ const fetchAllUsers = async () => {
     })
   })
 }
+const walletStore = useWalletStore()
+const abbreviatedWalletAddress = computed(() => {
+  if (walletStore.walletAddress.length > 10) {
+    return `${walletStore.walletAddress.substring(
+      0,
+      6
+    )}...${walletStore.walletAddress.substring(
+      walletStore.walletAddress.length - 4
+    )}`
+  }
+  return walletStore.walletAddress
+})
+const { totalUsers } = useUserPoints()
+// const formattedTotalUsers = computed(() => {
+//   return `${(totalUsers.value / 1000).toFixed(1)}k`
+// })
 onMounted(async () => {
   const authInstance = getAuth()
   const currentUser = authInstance.currentUser
@@ -53,6 +70,15 @@ onMounted(async () => {
     }
   })
   usersList.value = await fetchAllUsers()
+})
+const sortedUsersList = computed(() => {
+  return [...usersList.value].sort((a, b) => b.points - a.points)
+})
+const currentUserRank = computed(() => {
+  const index = sortedUsersList.value.findIndex(
+    (u) => u.uid === auth.currentUser.uid
+  )
+  return index >= 0 ? index + 1 : 'N/A'
 })
 // announcement
 const showAnnouncement = ref(false)
@@ -129,9 +155,9 @@ const handleSignInTwitter = () => {
       console.error(error)
     })
 }
-const displayedUsers = computed(() => {
-  return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
-})
+// const displayedUsers = computed(() => {
+//   return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
+// })
 
 const handleSignOut = () => {
   signOut(auth)
@@ -143,7 +169,7 @@ const handleSignOut = () => {
       console.error('Error signing out: ', error)
     })
 }
-const { userPoints, inviteLink } = useUserPoints()
+const { inviteLink } = useUserPoints()
 // copy
 
 const showCopySuccess = ref(false)
@@ -221,8 +247,8 @@ const copyInviteLink = () => {
           </div>
           <div class="wallet mb-3">
             <span class="flex flex-col"
-              ><p class="Primary_Wallet">Primary Wallet:</p>
-              <p class="p_wallet">0xx...xxx</p></span
+              ><p class="Primary_Wallet">Wallet:</p>
+              <p class="p_wallet">{{ abbreviatedWalletAddress }}</p></span
             >
           </div>
           <div class="bg_info">
@@ -254,14 +280,14 @@ const copyInviteLink = () => {
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>
-                <p class="abb_address">0x...xxxx</p>
+                <p class="abb_address">{{ abbreviatedWalletAddress }}</p>
               </span>
             </div>
           </div>
           <hr class="after_line" />
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">{{ user.points }}</span>
+              <span class="after_num">{{ userData.points }}</span>
             </div>
             <div class="points_title">
               <p>Total Points</p>
@@ -269,15 +295,15 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">5,000</span>
+              <span class="after_num">#{{ currentUserRank }}</span>
             </div>
             <div class="points_title">
-              <p>your rank</p>
+              <p>Your Rank</p>
             </div>
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">12</span>
+              <span class="after_num">{{ userData.inviteCount || 0 }}</span>
             </div>
             <div class="points_title">
               <p>Confirmed invites</p>
@@ -285,7 +311,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num">invitation link</span>
+              <span class="after_num">Inv Link</span>
             </div>
             <div class="after_invite" @click="copyInviteLink">
               <button class="invite_link">{{ inviteLink }}</button>
@@ -333,7 +359,7 @@ const copyInviteLink = () => {
               Top Accounts
             </h3>
             <p class="MuiTypography-root MuiTypography-body1 flex css-mmxf0c">
-              Total Accounts: 30k
+              Total Accounts: {{ totalUsers }}
             </p>
           </div>
           <ul class="top_list">
@@ -341,7 +367,7 @@ const copyInviteLink = () => {
             <hr class="line" />
             <li
               class="list_info"
-              v-for="user in displayedUsers"
+              v-for="user in sortedUsersList.slice(0, 10)"
               :key="user.uid"
             >
               <div class="list_address">
@@ -357,7 +383,7 @@ const copyInviteLink = () => {
               </div>
             </li>
           </ul>
-          <div class="view_all">
+          <div>
             <button class="view_btn" type="button">
               <p class="view_p">
                 {{ showAllUsers.value ? 'Hide' : 'View All Top Accounts' }}
@@ -662,6 +688,10 @@ h3 {
 }
 .abb_address {
   font-size: 18px;
+  font-family: 'pixelmix-bold-2';
+}
+.points_title p {
+  font-family: 'pixelmix-bold-2';
 }
 .after_line {
   border-bottom: 1px solid #505050;

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 import { setupWeb3Modal, connectWallet } from '@/utils/connect.js'
-
+import { useWalletStore } from '@/stores/wallet.js'
 const projectId = '60b14c9cc884b15ff285f0a5c2f0b1c4'
 const modal = setupWeb3Modal(projectId)
 
@@ -17,10 +17,12 @@ async function onConnect() {
   // walletAddress.value = address
   console.log(address)
   // console.log(walletAddress)
+  const walletStore = useWalletStore()
   if (address) {
     walletConnected.value = true
     showCustomButton.value = false
     showButtonBorders.value = true
+    walletStore.setWalletAddress(address)
   } else {
     walletConnected.value = false
     showCustomButton.value = true
