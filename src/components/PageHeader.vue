@@ -18,6 +18,7 @@ async function onConnect() {
   console.log(address)
   // console.log(walletAddress)
   const walletStore = useWalletStore()
+
   if (address) {
     walletConnected.value = true
     showCustomButton.value = false

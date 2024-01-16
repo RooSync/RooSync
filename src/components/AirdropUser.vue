@@ -17,9 +17,11 @@ import { parseReferralLink } from '@/utils/invite_twitter.js'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { useWalletStore } from '@/stores/wallet.js'
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
+const walletStore = useWalletStore()
 
 const fetchTotalUsersCount = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
@@ -256,8 +258,8 @@ const copyInviteLink = () => {
           </div>
           <div class="wallet mb-3">
             <span class="flex flex-col"
-              ><p class="Primary_Wallet">Primary Wallet:</p>
-              <p class="p_wallet">0xx...xxx</p></span
+              ><p class="Primary_Wallet">Wallet:</p>
+              <p class="p_wallet">{{ walletStore.walletAddress }}</p></span
             >
           </div>
           <div class="bg_info">
@@ -289,7 +291,7 @@ const copyInviteLink = () => {
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>
-                <p class="abb_address">0x...xxxx</p>
+                <p class="abb_address">{{ walletStore.walletAddress }}</p>
               </span>
             </div>
           </div>
