@@ -47,6 +47,7 @@ const currentUser = reactive({
   points: 0,
   invitesCount: 0
 })
+const twitterUsername = ref('')
 onMounted(async () => {
   await fetchTotalUsersCount()
   const authInstance = getAuth()
@@ -76,11 +77,13 @@ onMounted(async () => {
       console.log('Current User:', currentUser)
       console.log('Updated currentUser invitesCount:', currentUser.invitesCount)
       isUserLoggedIn.value = true
+      twitterUsername.value = firebaseUser.displayName
     } else {
       currentUser.displayName = null
       currentUser.points = 0
 
       isUserLoggedIn.value = false
+      twitterUsername.value = ''
     }
   })
 
@@ -134,10 +137,12 @@ async function updateUserData() {
   currentUser.rank = calculateRank()
   console.log('User data updated, currentUser:', currentUser)
 }
+
 const handleSignInTwitter = async () => {
   try {
     const result = await signInWithPopup(auth, providerTwitter)
     console.log('Twitter login result:', result)
+    twitterUsername.value = result.user.displayName
     user.value = result.user.displayName
     isSignedIn.value = true
     isUserLoggedIn.value = true
@@ -293,7 +298,7 @@ const copyInviteLink = () => {
             <div class="twitter_ID">
               <span class="user_ID">
                 <p>ID:</p>
-                <p class="user_id_after" v-if="user">@{{ user }}</p>
+                <p class="user_id_after">@{{ twitterUsername }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
                 <p class="login_out">sign out</p>
@@ -398,7 +403,7 @@ const copyInviteLink = () => {
                   alt="User Avatar"
                   class="user-avatar"
                 />
-                <p class="list_address_p">{{ listUser.username }}</p>
+                <p class="list_address_p">@{{ listUser.username }}</p>
               </div>
               <div class="list_point">
                 <p class="list_point_p">
