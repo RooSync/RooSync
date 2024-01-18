@@ -137,10 +137,11 @@ async function updateUserData() {
 const handleSignInTwitter = async () => {
   try {
     const result = await signInWithPopup(auth, providerTwitter)
+    console.log('Twitter login result:', result)
     user.value = result.user.displayName
     isSignedIn.value = true
     isUserLoggedIn.value = true
-
+    console.log(user.value)
     const fetchedUserData = await fetchUserData(result.user.uid)
     if (fetchedUserData) {
       userData.value = fetchedUserData
@@ -291,7 +292,7 @@ const copyInviteLink = () => {
           <div class="after_twitter">
             <div class="twitter_ID">
               <span class="user_ID">
-                <p>ID:{{ user }}</p>
+                <p>ID:</p>
                 <p class="user_id_after" v-if="user">@{{ user }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
@@ -329,7 +330,7 @@ const copyInviteLink = () => {
               <span class="after_num">{{ currentUser.invitesCount }}</span>
             </div>
             <div class="points_title">
-              <p class="points_title_p">Confirmed invites</p>
+              <p class="points_title_p">Confirmed Invites</p>
             </div>
           </div>
           <div class="after_points">
@@ -764,5 +765,6 @@ h3 {
 
 .points_title_p {
   font-family: 'pixelmix-bold-2';
+  font-weight: 700;
 }
 </style>
