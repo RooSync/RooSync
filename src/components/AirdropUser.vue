@@ -22,16 +22,18 @@ const { address, isConnected } = useWeb3ModalAccount()
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
-// 函数来简写地址
 const shortenAddress = (address) => {
-  if (!address) return ''
-  return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+  const addressStr = address.value || ''
+  if (!addressStr) return ''
+  return `${addressStr.substring(0, 6)}...${addressStr.substring(
+    addressStr.length - 4
+  )}`
 }
 
 const shortenedAddress = computed(() => shortenAddress(address))
 const fetchTotalUsersCount = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
-  totalUsersCount.value = querySnapshot.size // 更新总用户数
+  totalUsersCount.value = querySnapshot.size
 }
 
 const fetchAllUsers = async () => {
@@ -62,12 +64,12 @@ onMounted(async () => {
     const fetchedUserData = await fetchUserData(firebaseCurrentUser.uid)
     currentUser.displayName = firebaseCurrentUser.displayName
     currentUser.points = fetchedUserData.points || 0
-    // 更新其他需要的字段
+
     isUserLoggedIn.value = true
   } else {
     currentUser.displayName = null
     currentUser.points = 0
-    // 重置其他字段
+
     isUserLoggedIn.value = false
   }
 
@@ -96,7 +98,6 @@ onMounted(async () => {
   usersList.value = await fetchAllUsers()
 })
 const calculateRank = () => {
-  // 找到当前用户在排序后的列表中的位置
   const rank = usersList.value.findIndex((u) => u.uid === currentUser.uid) + 1
   return rank
 }
@@ -119,10 +120,8 @@ async function updateReferrerPoints(referrerId, invitedUserId) {
   const invitedUserSnap = await getDoc(invitedUserRef)
 
   if (invitedUserSnap.exists() && !invitedUserSnap.data().referrerRewarded) {
-    // 更新被邀请者的 referrerRewarded 字段
     await setDoc(invitedUserRef, { referrerRewarded: true }, { merge: true })
 
-    // 更新邀请者的积分
     const referrerRef = doc(db, 'users', referrerId)
     const referrerSnap = await getDoc(referrerRef)
     if (referrerSnap.exists()) {
@@ -173,7 +172,7 @@ const handleSignInTwitter = async () => {
 
     const referrerId = sessionStorage.getItem('referrerId')
     if (referrerId) {
-      const invitedUserId = result.user.uid // 被邀请用户的 ID
+      const invitedUserId = result.user.uid
       const invitedUserRef = doc(db, 'users', invitedUserId)
       const invitedUserSnap = await getDoc(invitedUserRef)
       if (
@@ -184,7 +183,6 @@ const handleSignInTwitter = async () => {
       }
     }
 
-    // 更新用户数据
     await updateUserData()
   } catch (error) {
     console.error(error)
@@ -546,11 +544,10 @@ h3 {
   margin-bottom: 12px;
 }
 .Primary_Wallet {
-  font-size: 12px;
+  font-size: 100%;
 }
 .p_wallet {
-  font-size: 20px;
-  color: #ffffff;
+  font-size: 100%;
   font-family: 'pixelmix-bold-2';
   font-weight: 700;
 }
@@ -725,7 +722,7 @@ h3 {
   align-items: center;
 }
 .abb_address {
-  font-size: 18px;
+  font-size: 100%;
   font-family: 'pixelmix-bold-2';
   font-weight: 700;
 }

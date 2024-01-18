@@ -9,9 +9,9 @@ export function parseReferralLink() {
   console.log('解析到的 referrerId:', referrerId)
   if (referrerId) {
     sessionStorage.setItem('referrerId', referrerId)
-    console.log('referrerId 已存储到 sessionStorage')
+    console.log('referrerId sessionStorage')
   } else {
-    console.log('未找到 referrerId') // 日志：未找到 referrerId
+    console.log('referrerId')
   }
 }
 

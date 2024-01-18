@@ -20,7 +20,7 @@ const router = createRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  console.log('当前路由参数:', to.query)
+  console.log('rooter:', to.query)
   const referrerId = to.query.ref
 
   if (referrerId) {
