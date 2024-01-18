@@ -291,7 +291,7 @@ const copyInviteLink = () => {
           <div class="after_twitter">
             <div class="twitter_ID">
               <span class="user_ID">
-                <p>ID:</p>
+                <p>ID:{{ user }}</p>
                 <p class="user_id_after" v-if="user">@{{ user }}</p>
               </span>
               <button @click="handleSignOut" class="out_btn">
@@ -313,7 +313,7 @@ const copyInviteLink = () => {
               <span class="after_num">{{ currentUser.points }}</span>
             </div>
             <div class="points_title">
-              <p>Total Points</p>
+              <p class="points_title_p">Total Points</p>
             </div>
           </div>
           <div class="after_points">
@@ -321,7 +321,7 @@ const copyInviteLink = () => {
               <span class="after_num"># {{ calculateRank() }}</span>
             </div>
             <div class="points_title">
-              <p>Your Rank</p>
+              <p class="points_title_p">Your Rank</p>
             </div>
           </div>
           <div class="after_points">
@@ -329,7 +329,7 @@ const copyInviteLink = () => {
               <span class="after_num">{{ currentUser.invitesCount }}</span>
             </div>
             <div class="points_title">
-              <p>Confirmed invites</p>
+              <p class="points_title_p">Confirmed invites</p>
             </div>
           </div>
           <div class="after_points">
@@ -761,7 +761,8 @@ h3 {
 .top_list::-webkit-scrollbar {
   display: none;
 }
-.top_title p {
+
+.points_title_p {
   font-family: 'pixelmix-bold-2';
 }
 </style>
