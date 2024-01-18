@@ -22,7 +22,13 @@ const { address, isConnected } = useWeb3ModalAccount()
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
+// 函数来简写地址
+const shortenAddress = (address) => {
+  if (!address) return ''
+  return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`
+}
 
+const shortenedAddress = computed(() => shortenAddress(address))
 const fetchTotalUsersCount = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
   totalUsersCount.value = querySnapshot.size // 更新总用户数
@@ -277,7 +283,7 @@ const copyInviteLink = () => {
           <div class="wallet mb-3" v-if="isConnected">
             <span class="flex flex-col"
               ><p class="Primary_Wallet">Wallet:</p>
-              <p class="p_wallet">{{ address }}</p></span
+              <p class="p_wallet">{{ shortenedAddress }}</p></span
             >
           </div>
           <div class="bg_info">
@@ -309,7 +315,7 @@ const copyInviteLink = () => {
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>
-                <p class="abb_address">{{ address }}</p>
+                <p class="abb_address">{{ shortenedAddress }}</p>
               </span>
             </div>
           </div>
@@ -545,6 +551,8 @@ h3 {
 .p_wallet {
   font-size: 20px;
   color: #ffffff;
+  font-family: 'pixelmix-bold-2';
+  font-weight: 700;
 }
 .bg_info {
   align-items: center;
@@ -718,6 +726,8 @@ h3 {
 }
 .abb_address {
   font-size: 18px;
+  font-family: 'pixelmix-bold-2';
+  font-weight: 700;
 }
 .after_line {
   border-bottom: 1px solid #505050;
