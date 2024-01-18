@@ -3,15 +3,15 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 
 const etherscanApiKey = import.meta.env.VITE_ETHERSCAN_API_KEY
-const blockcypherApiKey = import.meta.env.VITE_BLOCKCYPHER_API_KEY
+// const blockcypherApiKey = import.meta.env.VITE_BLOCKCYPHER_API_KEY
 
 const ethGasPrice = ref(null)
-const btcTransactionFee = ref({
-  high_fee_per_kb: null,
-  medium_fee_per_kb: null,
-  low_fee_per_kb: null
-})
-const updateInterval = 60000
+// const btcTransactionFee = ref({
+//   high_fee_per_kb: null,
+//   medium_fee_per_kb: null,
+//   low_fee_per_kb: null
+// })
+const updateInterval = 10000
 
 const fetchEthGasPrice = async () => {
   try {
@@ -26,29 +26,29 @@ const fetchEthGasPrice = async () => {
   }
 }
 
-const fetchBtcTransactionFee = async () => {
-  try {
-    const response = await axios.get(
-      `https://api.blockcypher.com/v1/btc/main?token=${blockcypherApiKey}`
-    )
-    if (response.data) {
-      btcTransactionFee.value = {
-        high_fee_per_kb: response.data.high_fee_per_kb,
-        medium_fee_per_kb: response.data.medium_fee_per_kb,
-        low_fee_per_kb: response.data.low_fee_per_kb
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching Bitcoin transaction fee:', error)
-  }
-}
+// const fetchBtcTransactionFee = async () => {
+//   try {
+//     const response = await axios.get(
+//       `https://api.blockcypher.com/v1/btc/main?token=${blockcypherApiKey}`
+//     )
+//     if (response.data) {
+//       btcTransactionFee.value = {
+//         high_fee_per_kb: response.data.high_fee_per_kb,
+//         medium_fee_per_kb: response.data.medium_fee_per_kb,
+//         low_fee_per_kb: response.data.low_fee_per_kb
+//       }
+//     }
+//   } catch (error) {
+//     console.error('Error fetching Bitcoin transaction fee:', error)
+//   }
+// }
 
 onMounted(() => {
   fetchEthGasPrice()
-  fetchBtcTransactionFee()
+  // fetchBtcTransactionFee()
   const interval = setInterval(() => {
     fetchEthGasPrice()
-    fetchBtcTransactionFee()
+    // fetchBtcTransactionFee()
   }, updateInterval)
 
   onUnmounted(() => {
@@ -71,7 +71,7 @@ onMounted(() => {
         src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/45_Bitcoin_logo_logos-512.png"
         alt="Bitcoin"
       />
-      <p class="btc-gas">{{ btcTransactionFee.medium_fee_per_kb }} sat/vB</p>
+      <p class="btc-gas">$ROOC</p>
     </div>
     <div class="parent">
       <a href="https://twitter.com/roo_sync" target="_blank"

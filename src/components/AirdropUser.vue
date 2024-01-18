@@ -17,13 +17,11 @@ import { parseReferralLink } from '@/utils/invite_twitter.js'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
-import { useWalletStore } from '@/stores/wallet.js'
-
+import { useWeb3ModalAccount } from '@web3modal/ethers5/vue'
+const { address } = useWeb3ModalAccount()
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
-
-const walletStore = useWalletStore()
 
 const fetchTotalUsersCount = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'))
@@ -279,7 +277,7 @@ const copyInviteLink = () => {
           <div class="wallet mb-3">
             <span class="flex flex-col"
               ><p class="Primary_Wallet">Wallet:</p>
-              <p class="p_wallet">{{ walletStore.walletAddress }}</p></span
+              <p class="p_wallet">{{ address }}</p></span
             >
           </div>
           <div class="bg_info">
@@ -311,7 +309,7 @@ const copyInviteLink = () => {
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>
-                <p class="abb_address">{{ walletStore.walletAddress }}</p>
+                <p class="abb_address">{{ address }}</p>
               </span>
             </div>
           </div>
