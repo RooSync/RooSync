@@ -18,7 +18,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { useWeb3ModalAccount } from '@web3modal/ethers5/vue'
-const { address } = useWeb3ModalAccount()
+const { address, isConnected } = useWeb3ModalAccount()
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
@@ -274,7 +274,7 @@ const copyInviteLink = () => {
               <div class="btn-verify_p">Verify your twitter</div>
             </button>
           </div>
-          <div class="wallet mb-3">
+          <div class="wallet mb-3" v-if="isConnected">
             <span class="flex flex-col"
               ><p class="Primary_Wallet">Wallet:</p>
               <p class="p_wallet">{{ address }}</p></span
@@ -305,7 +305,7 @@ const copyInviteLink = () => {
               </button>
             </div>
           </div>
-          <div class="after_wallet">
+          <div class="after_wallet" v-if="isConnected">
             <div class="your_wallet">
               <span class="user_wallet">
                 <p>wallet:</p>

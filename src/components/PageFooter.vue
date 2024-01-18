@@ -66,11 +66,7 @@ onMounted(() => {
         alt="Ethereum"
       />
       <p class="eth-gas">{{ ethGasPrice }} Gwei</p>
-      <img
-        class="btc"
-        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/45_Bitcoin_logo_logos-512.png"
-        alt="Bitcoin"
-      />
+      <img class="btc" src="../assets/images/logo_w.png" alt="ROOC" />
       <p class="btc-gas">$ROOC</p>
     </div>
     <div class="parent">
@@ -160,10 +156,10 @@ onMounted(() => {
 }
 .eth-gas {
   display: flex;
-  font-size: 16px;
+  font-size: 100%;
   align-items: center;
   color: grey;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
   margin-right: 30px;
 }
 .eth {
@@ -175,10 +171,9 @@ onMounted(() => {
 }
 .btc-gas {
   display: flex;
-  font-size: 16px;
+  font-size: 100%;
   align-items: center;
   color: grey;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .btc {
   margin-right: 5px;
