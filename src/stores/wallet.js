@@ -6,6 +6,7 @@ export const useWalletStore = defineStore('wallet', {
   }),
   actions: {
     setWalletAddress(address) {
+      console.log('Setting wallet address in store:', address)
       this.walletAddress = address
     }
   }

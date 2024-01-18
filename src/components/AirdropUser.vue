@@ -18,9 +18,11 @@ import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 import { getFirestore, collection, getDocs } from 'firebase/firestore'
 import { useWalletStore } from '@/stores/wallet.js'
+
 const totalUsersCount = ref(0)
 const db = getFirestore()
 const usersList = ref([])
+
 const walletStore = useWalletStore()
 
 const fetchTotalUsersCount = async () => {

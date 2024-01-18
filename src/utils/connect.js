@@ -46,15 +46,19 @@ export function setupWeb3Modal(projectId) {
 
 export async function connectWallet(modal) {
   try {
+    console.log('Web3Modal instance:', modal)
     await modal.open()
-    const provider = modal.provider.value
+
+    const provider = modal.provider?.value
+
+    if (!provider) {
+      throw new Error('No provider found')
+    }
     const web3Provider = new ethers.providers.Web3Provider(provider)
     const accounts = await web3Provider.listAccounts()
     return accounts[0] || null
   } catch (error) {
     console.error('Error connecting to wallet:', error)
-    console.log('Modal object:', modal)
-    console.log('Provider:', modal.provider)
     return null
   }
 }
