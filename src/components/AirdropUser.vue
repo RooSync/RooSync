@@ -74,12 +74,12 @@ onMounted(async () => {
       currentUser.invitesCount = fetchedUserData.invitesCount || 0
       currentUser.uid = firebaseUser.uid
       console.log('Current User:', currentUser)
-      // 更新其他需要的字段
+      console.log('Updated currentUser invitesCount:', currentUser.invitesCount)
       isUserLoggedIn.value = true
     } else {
       currentUser.displayName = null
       currentUser.points = 0
-      // 重置其他字段
+
       isUserLoggedIn.value = false
     }
   })
@@ -127,6 +127,7 @@ async function updateUserData() {
   usersList.value = await fetchAllUsers()
 
   currentUser.rank = calculateRank()
+  console.log('User data updated, currentUser:', currentUser)
 }
 const handleSignInTwitter = async () => {
   try {
