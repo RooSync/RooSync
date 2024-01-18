@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc
+} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -45,5 +51,21 @@ const fetchUserData = async (userId) => {
     return null
   }
 }
+const updateInvitesCount = async (userId, newCount) => {
+  const userRef = doc(db, 'users', userId)
 
-export { firebaseApp, db, auth, saveUserToFirestore, fetchUserData }
+  try {
+    await updateDoc(userRef, { invitesCount: newCount })
+    console.log(`Updated invitesCount for user ${userId} to ${newCount}`)
+  } catch (error) {
+    console.error(`Error updating invitesCount for user ${userId}:`, error)
+  }
+}
+export {
+  firebaseApp,
+  db,
+  auth,
+  saveUserToFirestore,
+  fetchUserData,
+  updateInvitesCount
+}
