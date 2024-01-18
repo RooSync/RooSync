@@ -387,16 +387,22 @@ const copyInviteLink = () => {
           <ul class="top_list">
             <p class="top_title"><span>Address</span><span>Roo Points</span></p>
             <hr class="line" />
-            <li class="list_info" v-for="user in displayedUsers" :key="user.id">
+            <li
+              class="list_info"
+              v-for="listUser in displayedUsers"
+              :key="listUser.id"
+            >
               <div class="list_address">
-                <img :src="user.avatar" alt="User Avatar" class="user-avatar" />
-                <p class="list_address_p">
-                  {{ user.username }}
-                </p>
+                <img
+                  :src="listUser.avatar"
+                  alt="User Avatar"
+                  class="user-avatar"
+                />
+                <p class="list_address_p">{{ listUser.username }}</p>
               </div>
               <div class="list_point">
                 <p class="list_point_p">
-                  <span>{{ user.points }}</span>
+                  <span>{{ listUser.points }}</span>
                 </p>
               </div>
             </li>
