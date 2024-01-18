@@ -47,7 +47,7 @@ const fetchAllUsers = async () => {
     }
   })
   fetchedUsers.sort((a, b) => (b.points || 0) - (a.points || 0))
-  console.log('Sorted Users:', fetchedUsers)
+
   return fetchedUsers
 }
 const currentUser = reactive({
@@ -407,7 +407,7 @@ const copyInviteLink = () => {
                   alt="User Avatar"
                   class="user-avatar"
                 />
-                <p class="list_address_p">@{{ listUser.username }}</p>
+                <p class="list_address_p">{{ listUser.username }}</p>
               </div>
               <div class="list_point">
                 <p class="list_point_p">
