@@ -27,15 +27,7 @@ onUpdated(() => {})
               developer rewards.
             </div>
 
-            <div class="pic_real_main">
-              <div class="main-img">
-                <div class="img">
-                  <img src="@/assets/images/pocket_banner.png" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div class="text2">UTILITY ⬇</div>
+            <div class="text2">UTILITY</div>
             <div class="card-list">
               <div class="card-item">
                 <div class="left">
@@ -128,6 +120,13 @@ onUpdated(() => {})
               </div>
             </div> -->
           </div>
+          <div class="pic_real_main">
+            <div class="main-img">
+              <div class="img">
+                <img src="@/assets/images/pocket_banner.png" alt="" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -137,18 +136,9 @@ onUpdated(() => {})
 
 <style lang="scss" scoped>
 .pic_real_main {
-  position: fixed;
-  bottom: 0;
-  margin: 50px;
-  right: 0;
-  width: 40%;
+  width: 100%;
   .main-img {
-    // margin-right: 10%;
-    height: auto;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 
     img {
       width: 100%;
@@ -156,41 +146,37 @@ onUpdated(() => {})
   }
 }
 .real {
-  padding-top: 70px;
-  max-width: 1440px;
-  margin: 0 auto;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  padding-left: 95px;
+  padding-right: 80px;
+  padding-top: 0px;
+  padding-bottom: 36px;
+}
+.w {
+  width: 100%;
 }
 .real-wrapper {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  height: 100%;
-  overflow: hidden;
   width: 100%;
-  position: relative;
+
   z-index: 9;
-  max-width: 1264px;
-  margin: 0 auto;
 
   .main-wrapper {
-    position: relative;
-    overflow: hidden;
+    display: flex;
     height: 80vh;
-    max-width: 1264px;
     margin: 0 auto;
     width: 100%;
   }
   .main {
-    max-width: 590px;
+    width: 100%;
     padding-top: 0;
     padding-bottom: 50px;
-    height: 80vh;
-    position: absolute;
-    left: 0;
+    padding-right: 20px;
     overflow-x: hidden;
     overflow-y: scroll;
 
@@ -202,15 +188,14 @@ onUpdated(() => {})
       }
     }
     .text1 {
-      max-width: 670px;
       padding-top: 40px;
       font-weight: 400;
       font-size: 16px;
-      line-height: 25px;
+      line-height: 35px;
     }
     .text2 {
       color: #fdb10d;
-      padding-top: 90px;
+      margin-top: 36px;
       font-style: normal;
       font-weight: 400;
       font-size: 40px;
@@ -219,7 +204,7 @@ onUpdated(() => {})
       text-transform: uppercase;
     }
     .card-list {
-      padding-top: 52px;
+      margin-top: 36px;
       .card-item {
         padding: 33px 37px 42px 43px;
         height: 276px;
@@ -230,7 +215,7 @@ onUpdated(() => {})
         .left {
           flex: 1;
           .l-titel {
-            margin-bottom: 8px;
+            margin-bottom: 24px;
             font-style: normal;
             font-weight: 400;
             font-size: 25px;
@@ -243,7 +228,7 @@ onUpdated(() => {})
               font-style: normal;
               font-weight: 400;
               font-size: 16px;
-              line-height: 25px;
+              line-height: 30px;
               position: relative;
               &::after {
                 position: absolute;
@@ -324,24 +309,6 @@ onUpdated(() => {})
         }
       }
     }
-  }
-}
-@media (max-width: 768px) {
-  .real {
-    width: 100%;
-  }
-  .main-wrapper {
-    align-items: center;
-  }
-  .main {
-    width: 100%;
-    height: 100%;
-  }
-  .pic_real_main {
-    top: 0;
-    padding-top: 50%;
-    justify-content: center;
-    max-height: 10%;
   }
 }
 </style>

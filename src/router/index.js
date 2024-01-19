@@ -20,7 +20,6 @@ const router = createRouter({
   ]
 })
 router.beforeEach((to, from, next) => {
-  console.log('rooter:', to.query)
   const referrerId = to.query.ref
 
   if (referrerId) {

@@ -81,17 +81,17 @@ const onCustomButtonClick = async () => {
 
 <style lang="scss" scoped>
 .header {
-  margin-top: 10px;
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 70px;
   height: auto;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 .nav-main {

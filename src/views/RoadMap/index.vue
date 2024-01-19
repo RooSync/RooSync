@@ -106,23 +106,19 @@ const closeDialog = () => {
 </template>
 
 <style lang="scss" scoped>
-/* 您的现有样式 */
-/* ... */
 .road-map {
-  padding-top: 50px;
-  min-height: 100%;
-  min-height: auto;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 36px;
+  padding-left: 80px;
+  padding-right: 80px;
+
   .w {
-    min-height: 100%;
+    width: 100%;
 
     .road-map-wrapper {
-      margin: auto;
-      max-width: 1264px;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 25px;
+      width: 100%;
+      padding-left: 85px;
     }
   }
   .model-item {
@@ -173,12 +169,12 @@ const closeDialog = () => {
     }
   }
   .com-title {
-    margin-top: 0;
-    padding-bottom: 0px;
+    width: 100%;
+    height: auto;
 
     .title-1 {
       color: #fdb10d;
-      font-size: 78px;
+      font-size: 70px;
     }
   }
   // .text {
@@ -193,6 +189,7 @@ const closeDialog = () => {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 12px;
     .road-main-item {
       // flex: 0 0 48%;
       padding: 24px 24px 24px 30px;

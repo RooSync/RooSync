@@ -58,32 +58,29 @@ onUpdated(() => {})
 
 <style lang="scss" scoped>
 .roo_token {
-  // margin-top: 125px;
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
-  // padding-top: 100px;
+  width: 100%;
+  margin: 36px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: auto;
   .w {
-    padding-top: 36px;
-    height: 100%;
+    width: 100%;
   }
 }
 .roo-wrapper {
-  margin: 20px auto;
+  margin: 0px auto;
   display: flex;
-  align-items: center;
-  max-width: 1264px;
-  margin-right: 50px;
-  // height: 100%;
+
+  width: 100%;
 
   .roo-left {
-    margin-top: -100px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
+    margin-top: 70px;
     height: 100%;
     .title {
       margin-top: 0;
@@ -106,11 +103,8 @@ onUpdated(() => {})
     }
   }
   .roo-right {
-    margin-top: -30px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     .wh-container {
       width: 100%;
     }
@@ -122,21 +116,20 @@ onUpdated(() => {})
   }
 }
 .economy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-top: 0;
-  margin-top: -36px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 36px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: auto;
 }
 .total {
   text-align: left;
   max-width: 1264px;
   width: 100%;
-  padding-left: 35px;
-  margin-top: -30px;
+  padding-left: 36px;
 }
 
 .text-total {
@@ -158,17 +151,15 @@ onUpdated(() => {})
 .distribution {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  max-width: 1264px;
+  justify-content: space-between;
   width: 100%;
-  margin: 0 auto;
+  padding-left: 35px;
+  padding-right: 35px;
 }
 
 .token-img {
   flex: 0.4;
-  margin-right: 90px;
   width: 100%;
-  height: auto;
   margin-bottom: 20px;
 }
 
@@ -177,7 +168,6 @@ onUpdated(() => {})
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  max-width: 1264px;
 }
 .text-d p {
   margin: 0;

@@ -70,7 +70,7 @@ onMounted(() => {
       <p class="btc-gas">$ROOC</p>
     </div>
     <div class="parent">
-      <a href="https://twitter.com/roo_sync" target="_blank"
+      <a href="https://twitter.com/roo_sync" class="twitter_l" target="_blank"
         ><div class="child child-1">
           <button class="button btn-1">
             <svg
@@ -144,8 +144,15 @@ onMounted(() => {
 .footer {
   height: 10vh;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 100px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .gas {
   display: flex;
@@ -183,17 +190,17 @@ onMounted(() => {
   object-position: center;
 }
 .parent {
-  width: 50%;
   height: 100%;
   display: flex;
-
   align-items: center;
-  margin-right: -445px;
+  justify-content: right;
 }
-
+.twitter_l {
+  margin-right: 30px;
+}
 .child {
-  width: 60px;
-  height: 50px;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

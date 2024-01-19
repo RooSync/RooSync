@@ -66,11 +66,11 @@ onUpdated(() => {})
   margin-right: 50px;
 }
 .orbit {
-  height: 65vh;
-  /* display: flex; */
+  box-sizing: border-box;
   width: 100%;
-  min-width: 100px;
-  min-height: 100px;
+  margin: 36px auto;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .orbit-icon {
@@ -399,12 +399,5 @@ ul[class^='ring'] li {
 .fa-codepen {
   background-image: url('https://i.seadn.io/gae/J2iIgy5_gmA8IS6sXGKGZeFVZwhldQylk7w7fLepTE9S7ICPCn_dlo8kypX8Ju0N6wvLVOKsbP_7bNGd8cpKmWhFQmqMXOC8q2sOdqw?w=256');
   color: white;
-}
-@media (max-width: 991px) {
-  .orbit-wrap {
-    height: 21.5em;
-    list-style: none;
-    font-size: 1.9em;
-  }
 }
 </style>

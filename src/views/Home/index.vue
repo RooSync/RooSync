@@ -87,33 +87,35 @@ const handleClick = () => {
 
 <style lang="scss" scoped>
 #home {
-  margin-top: 0 auto;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-  max-height: 1024px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 30px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 100px;
+  padding-right: 60px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: auto;
 }
 .r-home {
+  width: 100%;
   margin-top: 20px;
 }
 .login-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  // height: 100%;
-  flex-grow: 1;
 }
 
 .login-content {
   display: flex;
-  max-width: 1440px;
+  width: 100%;
 }
 
 .left-section {
-  width: 760px;
+  max-width: 760px;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -355,67 +357,11 @@ button:hover .star-6 {
 }
 
 .right-section {
-  width: 520px;
+  width: 100%;
 }
 
 .right-section img {
   width: 100%;
   height: auto;
-}
-@media (max-width: 991px) {
-  #home {
-    height: 100vh;
-    min-width: 100%;
-  }
-
-  .r-home {
-    min-width: 100%;
-    height: auto;
-    margin: 0 auto;
-  }
-  .login-content {
-    margin-top: 30px;
-    flex-direction: column;
-    min-width: 85%;
-  }
-  .left-section {
-    text-align: center;
-    width: 100%;
-    height: auto;
-  }
-  .right-section {
-    // width: 100%;
-    // height: auto;
-    // align-items: center;
-    // text-align: center;
-    display: none;
-  }
-  .right-section img {
-    width: 100%;
-    height: auto;
-  }
-  .main-title {
-    width: 100%;
-    height: auto;
-    font-size: 35px;
-  }
-  .sub-title {
-    text-align: center;
-    width: 100%;
-    height: auto;
-    font-size: 14px;
-    margin-top: 15px;
-  }
-  .buy {
-    min-width: 80px;
-    min-height: 30px;
-    height: auto;
-    text-align: center;
-  }
-  .box {
-    width: 100%;
-    text-align: center;
-    height: 100%;
-  }
 }
 </style>
