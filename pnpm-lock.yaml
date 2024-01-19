@@ -11,6 +11,9 @@ dependencies:
   '@fastify/busboy':
     specifier: ^2.1.0
     version: 2.1.0
+  '@firebase/database-compat':
+    specifier: ^1.0.2
+    version: 1.0.2
   '@web3modal/ethers5':
     specifier: ^3.5.3
     version: 3.5.6(ethers@5.7.2)
