@@ -86,6 +86,7 @@ onMounted(async () => {
       console.log('Updated currentUser invitesCount:', currentUser.invitesCount)
       isUserLoggedIn.value = true
       twitterUsername.value = firebaseUser.displayName
+      await updateUserData()
     } else {
       currentUser.displayName = null
       currentUser.points = 0

@@ -19,9 +19,11 @@
     "element-plus": "^2.4.4",
     "ethers": "5.7.2",
     "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
     "oauth": "^0.10.0",
     "oauth-1.0a": "^2.2.6",
     "pinia": "^2.1.7",
+    "twitter-api-client": "^1.6.1",
     "vue": "^3.4.1",
     "vue-router": "^4.2.5"
   },
