@@ -239,7 +239,7 @@ const copyInviteLink = () => {
         <p
           class="illustrate-p MuiTypography-root MuiTypography-caption font-semibold pr-3 text-left css-1draunl"
         >
-          RoomSync’s Points System
+          RooSync’s Points System
         </p>
         <svg
           width="24"
@@ -334,7 +334,7 @@ const copyInviteLink = () => {
           </div>
           <div class="after_points">
             <div class="user_points">
-              <span class="after_num"># {{ calculateRank() }}</span>
+              <span class="after_num">#{{ calculateRank() }}</span>
             </div>
             <div class="points_title">
               <p class="points_title_p">Your Rank</p>
@@ -400,7 +400,7 @@ const copyInviteLink = () => {
             <p class="Total Accounts">Total Accounts: {{ totalUsersCount }}</p>
           </div>
           <ul class="top_list">
-            <p class="top_title"><span>Address</span><span>Roo Points</span></p>
+            <p class="top_title"><span>Users</span><span>Roo Points</span></p>
             <hr class="line" />
             <li
               class="list_info"
@@ -542,8 +542,8 @@ h3 {
   cursor: pointer;
 }
 .btn-verify_p {
-  font-family: 'Minecrafter_Alt';
-  font-weight: 400;
+  font-family: 'pixelmix-bold-2';
+  font-weight: 700;
 }
 .wallet {
   height: auto;
@@ -556,6 +556,12 @@ h3 {
   font-size: 100%;
   font-family: 'pixelmix-bold-2';
   font-weight: 700;
+}
+.login_out {
+  transition: color 0.3s;
+}
+.login_out:hover {
+  color: #fdb10d;
 }
 .bg_info {
   align-items: center;
@@ -620,19 +626,25 @@ h3 {
   margin-right: 10px;
 }
 .view_all {
-  height: 30px;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
 .view_btn {
+  display: flex;
   background-color: transparent;
   border: none;
   border-radius: 3px;
+  align-items: center;
 }
 .view_p {
   color: aliceblue;
   font-family: 'Minecrafter_Alt';
   cursor: pointer;
+  transition: color 0.3s;
+}
+.view_p:hover {
+  color: #fdb10d;
 }
 .overlay {
   position: fixed;
