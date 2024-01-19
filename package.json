@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@fastify/busboy": "^2.1.0",
     "@web3modal/ethers5": "^3.5.3",
     "autofit.js": "^3.0.7",
     "axios": "^1.6.5",
