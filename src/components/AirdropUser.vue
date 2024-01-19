@@ -557,12 +557,7 @@ h3 {
   font-family: 'pixelmix-bold-2';
   font-weight: 700;
 }
-.login_out {
-  transition: color 0.3s;
-}
-.login_out:hover {
-  color: #fdb10d;
-}
+
 .bg_info {
   align-items: center;
   height: 100%;
@@ -637,15 +632,7 @@ h3 {
   border-radius: 3px;
   align-items: center;
 }
-.view_p {
-  color: aliceblue;
-  font-family: 'Minecrafter_Alt';
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.view_p:hover {
-  color: #fdb10d;
-}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -802,5 +789,20 @@ h3 {
 .points_title_p {
   font-family: 'pixelmix-bold-2';
   font-weight: 700;
+}
+.login_out {
+  transition: color 0.3s;
+}
+.login_out:hover {
+  color: #fdb10d;
+}
+.view_p {
+  color: aliceblue;
+  font-family: 'Minecrafter_Alt';
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.view_p:hover {
+  color: #fdb10d;
 }
 </style>
