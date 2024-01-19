@@ -85,7 +85,7 @@ onMounted(async () => {
       console.log('Current User:', currentUser)
       console.log('Updated currentUser invitesCount:', currentUser.invitesCount)
       isUserLoggedIn.value = true
-      twitterUsername.value = firebaseUser.displayName    
+      twitterUsername.value = firebaseUser.displayName
     } else {
       currentUser.displayName = null
       currentUser.points = 0
@@ -108,7 +108,6 @@ const toggleAnnouncement = () => {
 }
 // twitter verify login
 
-const showAllUsers = ref(false)
 const user = ref('')
 const isUserLoggedIn = ref(false)
 const isSignedIn = ref(false)
@@ -188,9 +187,16 @@ const handleSignInTwitter = async () => {
     console.error(error)
   }
 }
+const showAllUsers = ref(false)
+const toggleViewAllUsers = async () => {
+  showAllUsers.value = !showAllUsers.value
+}
 const displayedUsers = computed(() => {
   return showAllUsers.value ? usersList.value : usersList.value.slice(0, 10)
 })
+const getViewButtonText = () => {
+  return showAllUsers.value ? 'Hide Extra Accounts' : 'View All Top Accounts'
+}
 
 const handleSignOut = () => {
   signOut(auth)
@@ -417,9 +423,9 @@ const copyInviteLink = () => {
             </li>
           </ul>
           <div class="view_all">
-            <button class="view_btn" type="button">
+            <button class="view_btn" type="button" @click="toggleViewAllUsers">
               <p class="view_p">
-                {{ showAllUsers.value ? 'Hide' : 'View All Top Accounts' }}
+                {{ getViewButtonText() }}
               </p>
             </button>
           </div>

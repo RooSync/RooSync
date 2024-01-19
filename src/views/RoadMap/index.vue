@@ -190,6 +190,7 @@ const closeDialog = () => {
     display: flex;
     flex-wrap: wrap;
     padding-top: 12px;
+    margin-bottom: 30px;
     .road-main-item {
       // flex: 0 0 48%;
       padding: 24px 24px 24px 30px;

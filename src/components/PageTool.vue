@@ -71,6 +71,7 @@ onUpdated(() => {})
   margin: 36px auto;
   padding-left: 80px;
   padding-right: 80px;
+  height: 65vh;
 }
 
 .orbit-icon {

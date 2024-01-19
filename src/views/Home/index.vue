@@ -97,7 +97,7 @@ const handleClick = () => {
   padding-right: 60px;
   padding-top: 0px;
   padding-bottom: 0px;
-  height: auto;
+  height: 80vh;
 }
 .r-home {
   width: 100%;
@@ -127,12 +127,12 @@ const handleClick = () => {
   line-height: 1.2;
   color: #fdb10d;
   font-size: 78px;
-  margin-bottom: 0;
+  margin-bottom: 12px;
 }
 
 .sub-title {
   font-size: 24px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 }
 
 button {
