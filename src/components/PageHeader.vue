@@ -13,19 +13,15 @@ const walletConnected = ref(false)
 
 async function onConnect() {
   const address = await connectWallet(modal)
-  console.log('Wallet address from connectWallet:', address)
+
   console.log(modal)
-  // walletAddress.value = address
-  console.log(address)
 
   const walletStore = useWalletStore()
-  // console.log(walletAddress)
   if (address) {
     walletConnected.value = true
     showCustomButton.value = false
     showButtonBorders.value = true
     walletStore.setWalletAddress(address)
-    console.log('AddressW:', walletStore.walletAddress)
   } else {
     walletConnected.value = false
     showCustomButton.value = true

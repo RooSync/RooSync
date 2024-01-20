@@ -31,7 +31,6 @@ const saveUserToFirestore = async (userData) => {
 
   if (!docSnap.exists()) {
     await setDoc(userRef, userData)
-    console.log('Firestore')
   } else {
     console.log('User already exists')
   }
