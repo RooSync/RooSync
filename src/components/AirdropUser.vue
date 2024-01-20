@@ -141,7 +141,11 @@ async function updateUserData() {
   currentUser.rank = calculateRank()
   console.log('User data updated, currentUser:', currentUser)
 }
+const showVerifyButton = ref(false)
 
+const handleFollow = () => {
+  showVerifyButton.value = true
+}
 const handleSignInTwitter = async () => {
   try {
     const result = await signInWithPopup(auth, providerTwitter)
@@ -271,17 +275,29 @@ const copyInviteLink = () => {
             </h3>
           </div>
           <p class="rule_verify">
-            In order to track your RooSync Points, you must verify your twitter
-            and your account
+            In order to track your points, you need to first follow @roo_sync
+            and verify Twitter
           </p>
-          <div class="btn_twitter mb-3">
+          <a href="https://twitter.com/roo_sync" target="_blank">
+            <div class="btn_twitter mb-3">
+              <button
+                tabindex="0"
+                type="button"
+                class="btn-verify"
+                @click="handleFollow"
+              >
+                <div class="btn-verify_p">Step 1: Follow @RooSync</div>
+              </button>
+            </div>
+          </a>
+          <div class="btn_twitter mb-3" v-if="showVerifyButton">
             <button
               tabindex="0"
               type="button"
               class="btn-verify"
               @click="handleSignInTwitter"
             >
-              <div class="btn-verify_p">Verify your twitter</div>
+              <div class="btn-verify_p">Step 2: Verify your twitter</div>
             </button>
           </div>
           <div class="wallet mb-3" v-if="isConnected">
