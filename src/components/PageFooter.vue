@@ -142,7 +142,7 @@ onMounted(() => {
 <style scoped lang="scss">
 // Your styles go here
 .footer {
-  height: 10vh;
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,8 +151,7 @@ onMounted(() => {
   margin: 0 auto;
   padding-left: 80px;
   padding-right: 80px;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  margin-bottom: 40px;
 }
 .gas {
   display: flex;
@@ -172,7 +171,7 @@ onMounted(() => {
 .eth {
   margin-right: 10px;
   width: auto;
-  height: 40%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -185,7 +184,7 @@ onMounted(() => {
 .btc {
   margin-right: 5px;
   width: auto;
-  height: 40%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -193,7 +192,7 @@ onMounted(() => {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: flex-end;
 }
 .twitter_l {
   margin-right: 30px;

@@ -466,7 +466,7 @@ const copyInviteLink = () => {
       <hr />
       <p class="ann_p">
         Users can earn RooSync points by inviting friends and interacting with
-        us on Twitter, such as #RooSync.
+        us on Twitter, such as @RooSync.
       </p>
     </div>
   </div>

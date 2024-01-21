@@ -67,7 +67,7 @@ onUpdated(() => {})
 }
 .orbit {
   box-sizing: border-box;
-  width: 100%;
+  width: 1440px;
   margin: 36px auto;
   padding-left: 80px;
   padding-right: 80px;

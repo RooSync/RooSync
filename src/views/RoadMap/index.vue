@@ -108,11 +108,12 @@ const closeDialog = () => {
 <style lang="scss" scoped>
 .road-map {
   box-sizing: border-box;
-  width: 100%;
+  width: 1440px;
   margin-top: 36px;
   padding-left: 80px;
   padding-right: 80px;
-
+  margin-bottom: 36px;
+  height: 670px;
   .w {
     width: 100%;
 
@@ -192,7 +193,7 @@ const closeDialog = () => {
     padding-top: 12px;
     margin-bottom: 30px;
     .road-main-item {
-      // flex: 0 0 48%;
+      flex: 0 0 48%;
       padding: 24px 24px 24px 30px;
       display: flex;
       justify-content: space-between;

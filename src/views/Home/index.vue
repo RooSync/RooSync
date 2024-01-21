@@ -91,16 +91,16 @@ const handleClick = () => {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
-  margin: 0 auto;
-  padding-left: 100px;
-  padding-right: 60px;
+  width: 1440px;
+  margin-bottom: 36px;
+  padding-left: 80px;
+  padding-right: 80px;
   padding-top: 0px;
-  padding-bottom: 0px;
-  height: 80vh;
+  padding-bottom: 100px;
+  height: 670px;
 }
 .r-home {
-  width: 100%;
+  width: 1280px;
   margin-top: 20px;
 }
 .login-container {
@@ -111,13 +111,16 @@ const handleClick = () => {
 
 .login-content {
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  width: 1280px;
 }
 
 .left-section {
-  max-width: 760px;
+  width: 754px;
   padding: 20px;
   box-sizing: border-box;
+  margin-right: 50px;
 }
 
 .main-title {
@@ -357,11 +360,11 @@ button:hover .star-6 {
 }
 
 .right-section {
-  width: 100%;
+  width: 100vw;
 }
 
 .right-section img {
-  width: 100%;
+  width: 520px;
   height: auto;
 }
 </style>
