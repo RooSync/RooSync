@@ -148,7 +148,6 @@ const handleSignInTwitter = async () => {
     user.value = result.user.displayName
     isSignedIn.value = true
     isUserLoggedIn.value = true
-    console.log(user.value)
     const fetchedUserData = await fetchUserData(result.user.uid)
     if (fetchedUserData) {
       userData.value = fetchedUserData
