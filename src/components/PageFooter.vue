@@ -26,23 +26,6 @@ const fetchEthGasPrice = async () => {
   }
 }
 
-// const fetchBtcTransactionFee = async () => {
-//   try {
-//     const response = await axios.get(
-//       `https://api.blockcypher.com/v1/btc/main?token=${blockcypherApiKey}`
-//     )
-//     if (response.data) {
-//       btcTransactionFee.value = {
-//         high_fee_per_kb: response.data.high_fee_per_kb,
-//         medium_fee_per_kb: response.data.medium_fee_per_kb,
-//         low_fee_per_kb: response.data.low_fee_per_kb
-//       }
-//     }
-//   } catch (error) {
-//     console.error('Error fetching Bitcoin transaction fee:', error)
-//   }
-// }
-
 onMounted(() => {
   fetchEthGasPrice()
   // fetchBtcTransactionFee()
@@ -140,7 +123,6 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-// Your styles go here
 .footer {
   height: 30px;
   display: flex;
