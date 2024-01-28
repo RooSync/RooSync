@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, onUpdated } from 'vue'
-onMounted(() => {})
+onMounted(() => { })
 
-onUpdated(() => {})
+onUpdated(() => { })
 </script>
 <template>
   <div class="orbit">
@@ -19,7 +19,7 @@ onUpdated(() => {})
           <li><i class="orbit-icon fa fa-codepen"></i></li>
         </ul>
       </li>
-      <div class="text">coming soon</div>
+      <div class="text">coming soon...</div>
       <li>
         <ul class="ring-1">
           <li><i class="orbit-icon fa fa-podcast"></i></li>
@@ -65,6 +65,7 @@ onUpdated(() => {})
   text-align: center;
   margin-right: 50px;
 }
+
 .orbit {
   box-sizing: border-box;
   width: 100%;
@@ -92,23 +93,23 @@ onUpdated(() => {})
   font-size: 1.35em;
 }
 
-.orbit-wrap > li {
+.orbit-wrap>li {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.orbit-wrap > li:hover ul {
+.orbit-wrap>li:hover ul {
   border-width: 2px;
   border-color: #fff;
 }
 
-.orbit-wrap > li:hover ~ li ul {
+.orbit-wrap>li:hover~li ul {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.orbit-wrap > li:hover ~ li ul li {
+.orbit-wrap>li:hover~li ul li {
   opacity: 0.4;
 }
 
@@ -130,19 +131,19 @@ ul[class^='ring'] li {
   animation: counterClockwiseRotate 35s linear infinite;
 }
 
-.ring-0 > *:nth-of-type(1) {
+.ring-0>*:nth-of-type(1) {
   transform: rotate(95deg) translate(12.5em) rotate(-95deg);
 }
 
-.ring-0 > *:nth-of-type(2) {
+.ring-0>*:nth-of-type(2) {
   transform: rotate(190deg) translate(12.5em) rotate(-190deg);
 }
 
-.ring-0 > *:nth-of-type(3) {
+.ring-0>*:nth-of-type(3) {
   transform: rotate(285deg) translate(12.5em) rotate(-285deg);
 }
 
-.ring-0 > *:nth-of-type(4) {
+.ring-0>*:nth-of-type(4) {
   transform: rotate(380deg) translate(12.5em) rotate(-380deg);
 }
 
@@ -156,15 +157,15 @@ ul[class^='ring'] li {
   animation: counterClockwiseRotate 30s linear infinite;
 }
 
-.ring-1 > *:nth-of-type(1) {
+.ring-1>*:nth-of-type(1) {
   transform: rotate(126.6666666667deg) translate(10em) rotate(-126.6666666667deg);
 }
 
-.ring-1 > *:nth-of-type(2) {
+.ring-1>*:nth-of-type(2) {
   transform: rotate(253.3333333333deg) translate(10em) rotate(-253.3333333333deg);
 }
 
-.ring-1 > *:nth-of-type(3) {
+.ring-1>*:nth-of-type(3) {
   transform: rotate(380deg) translate(10em) rotate(-380deg);
 }
 
@@ -178,35 +179,35 @@ ul[class^='ring'] li {
   animation: counterClockwiseRotate 25s linear infinite;
 }
 
-.ring-2 > *:nth-of-type(1) {
+.ring-2>*:nth-of-type(1) {
   transform: rotate(47.5deg) translate(7.5em) rotate(-47.5deg);
 }
 
-.ring-2 > *:nth-of-type(2) {
+.ring-2>*:nth-of-type(2) {
   transform: rotate(95deg) translate(7.5em) rotate(-95deg);
 }
 
-.ring-2 > *:nth-of-type(3) {
+.ring-2>*:nth-of-type(3) {
   transform: rotate(142.5deg) translate(7.5em) rotate(-142.5deg);
 }
 
-.ring-2 > *:nth-of-type(4) {
+.ring-2>*:nth-of-type(4) {
   transform: rotate(190deg) translate(7.5em) rotate(-190deg);
 }
 
-.ring-2 > *:nth-of-type(5) {
+.ring-2>*:nth-of-type(5) {
   transform: rotate(237.5deg) translate(7.5em) rotate(-237.5deg);
 }
 
-.ring-2 > *:nth-of-type(6) {
+.ring-2>*:nth-of-type(6) {
   transform: rotate(285deg) translate(7.5em) rotate(-285deg);
 }
 
-.ring-2 > *:nth-of-type(7) {
+.ring-2>*:nth-of-type(7) {
   transform: rotate(332.5deg) translate(7.5em) rotate(-332.5deg);
 }
 
-.ring-2 > *:nth-of-type(8) {
+.ring-2>*:nth-of-type(8) {
   transform: rotate(380deg) translate(7.5em) rotate(-380deg);
 }
 
@@ -220,15 +221,15 @@ ul[class^='ring'] li {
   animation: counterClockwiseRotate 20s linear infinite;
 }
 
-.ring-3 > *:nth-of-type(1) {
+.ring-3>*:nth-of-type(1) {
   transform: rotate(126.6666666667deg) translate(5em) rotate(-126.6666666667deg);
 }
 
-.ring-3 > *:nth-of-type(2) {
+.ring-3>*:nth-of-type(2) {
   transform: rotate(253.3333333333deg) translate(5em) rotate(-253.3333333333deg);
 }
 
-.ring-3 > *:nth-of-type(3) {
+.ring-3>*:nth-of-type(3) {
   transform: rotate(380deg) translate(5em) rotate(-380deg);
 }
 
@@ -250,6 +251,7 @@ ul[class^='ring'] li {
   height: 1.6em;
   margin: -0.8em;
 }
+
 /*
  center;
  */
@@ -276,14 +278,15 @@ ul[class^='ring'] li {
   transition: all 300ms ease-in-out;
 }
 
-.orbit-wrap > li.orbit-center:hover ~ li > ul {
+.orbit-wrap>li.orbit-center:hover~li>ul {
   width: 0;
   height: 0;
 }
 
-.orbit-wrap > li.orbit-center:hover ~ li > ul * {
+.orbit-wrap>li.orbit-center:hover~li>ul * {
   transform: translate(0, 0);
 }
+
 /* 
  animations 
  */
@@ -306,6 +309,7 @@ ul[class^='ring'] li {
     transform: rotate(-360deg);
   }
 }
+
 /* 
  icons 
  */
@@ -314,106 +318,125 @@ ul[class^='ring'] li {
   background-image: url('https://upload.wikimedia.org/wikipedia/en/b/b9/Solana_logo.png');
   color: white;
 }
+
 /* btc */
 .fa-coffee {
   background-image: url('https://cryptologos.cc/logos/bitcoin-btc-logo.png');
   color: #cddc39;
 }
+
 /* okx */
 .fa-safari {
   background-image: url('https://altcoinsbox.com/wp-content/uploads/2023/03/okx-logo.jpg');
   color: darkslateblue;
 }
+
 /* github */
 .fa-firefox {
   background-image: url('https://pbs.twimg.com/profile_images/1633247750010830848/8zfRrYjA_400x400.png');
   color: #ff8f00;
 }
+
 /* chainlink */
 .fa-chrome {
   background-image: url('https://pbs.twimg.com/profile_images/1030475757892579334/qvSHhRyC_400x400.jpg');
   color: black;
 }
+
 /* unisawp */
 .fa-edge {
   background-image: url('https://pbs.twimg.com/profile_images/1696986796478091264/79NZgGom_400x400.jpg');
   color: white;
 }
+
 /* l0 */
 .fa-android {
   background-image: url('https://pbs.twimg.com/profile_images/1646595284104007680/w1J3ynMT_400x400.jpg');
   color: limegreen;
 }
+
 /* opensea */
 .fa-apple {
   background-image: url('https://cdn.worldvectorlogo.com/logos/opensea.svg');
   color: white;
 }
+
 /* binance */
 .fa-linux {
   background-image: url('https://www.svgrepo.com/show/331309/binance.svg');
   color: #222;
 }
+
 /* uniast */
 .fa-windows {
   background-image: url('https://pbs.twimg.com/profile_images/1635946239555674112/fA12aBLU_400x400.jpg');
   color: #03a9f4;
 }
+
 /* eth */
 .fa-terminal {
   background-image: url('https://w7.pngwing.com/pngs/268/1013/png-transparent-ethereum-eth-hd-logo.png');
   color: #fff;
 }
+
 /* arb */
 .fa-html5 {
   background-image: url('https://cryptologos.cc/logos/arbitrum-arb-logo.png');
   color: #e65100;
 }
+
 /* polygon */
 .fa-css3 {
   background-image: url('https://pbs.twimg.com/profile_images/1624229555333373952/JXGKFcO__400x400.jpg');
   color: #2196f3;
 }
+
 /* jomo */
 .fa-git {
   background-image: url('https://pbs.twimg.com/profile_images/1738062873635741696/vI87FNpS_400x400.jpg');
   color: white;
 }
+
 /* BAYC */
 .fa-free-code-camp {
   background-image: url('https://pbs.twimg.com/profile_images/1608904721489592321/o7Sj4Iln_400x400.jpg');
   color: white;
 }
+
 /* Bitcoin Frogs */
 .fa-meetup {
   background-image: url('https://pbs.twimg.com/profile_images/1635725529604136963/es4S6UqQ_400x400.jpg');
   color: white;
 }
+
 /* op */
 .fa-podcast {
   background-image: url('https://pbs.twimg.com/profile_images/1734354549496836096/-laoU9C9_400x400.jpg');
   color: white;
 }
+
 /* mfers */
 .fa-codepen {
   background-image: url('https://i.seadn.io/gae/J2iIgy5_gmA8IS6sXGKGZeFVZwhldQylk7w7fLepTE9S7ICPCn_dlo8kypX8Ju0N6wvLVOKsbP_7bNGd8cpKmWhFQmqMXOC8q2sOdqw?w=256');
   color: white;
 }
+
 @media (max-width: 991px) {
   .orbit {
     height: 80vh;
   }
+
   .orbit-wrap {
     height: 21.5em;
     list-style: none;
     font-size: 2.2em;
   }
 }
+
 @media (max-width: 766px) {
   .orbit-wrap {
     height: 21.5em;
     list-style: none;
     font-size: 3em;
   }
-}
-</style>
+}</style>
