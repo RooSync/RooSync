@@ -143,7 +143,6 @@ const handleFollow = () => {
 const handleSignInTwitter = async () => {
   try {
     const result = await signInWithPopup(auth, providerTwitter)
-    console.log('Twitter login result:', result)
     twitterUsername.value = result.user.displayName
     user.value = result.user.displayName
     isSignedIn.value = true
