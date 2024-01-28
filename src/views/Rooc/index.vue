@@ -11,25 +11,19 @@ onUpdated(() => {})
         <div class="roo-left">
           <div class="title">$ROOC</div>
           <div class="text">
-            Discover the power of $ROOC, the governance token of RooSync,
-            designed to unlock new dimensions within our thriving ecosystem. Not
-            only represents ownership but serves as a key to elevate your
-            RooSync experience. <br />
-            Stake $ROOC to earn valuable store points, enhancing your Roo Pocket
-            experience. The more you stake, the higher your store points,
-            unlocking premium tools, and granting you unparalleled access to
-            cutting-edge resources.
+            Discover the power of $ROOC, the governance token of RooSync, designed to unlock new
+            dimensions within our thriving ecosystem. Not only represents ownership but serves as a
+            key to elevate your RooSync experience. <br />
+            Stake $ROOC to earn valuable store points, enhancing your Roo Pocket experience. The
+            more you stake, the higher your store points, unlocking premium tools, and granting you
+            unparalleled access to cutting-edge resources.
           </div>
         </div>
         <div class="roo-right">
           <div class="wh-container">
             <div class="wrapper">
               <div class="content">
-                <img
-                  class="rooc-img"
-                  src="@/assets/images/rooc_banner.png"
-                  alt=""
-                />
+                <img class="rooc-img" src="@/assets/images/rooc_banner.png" alt="" />
               </div>
             </div>
           </div>
@@ -197,20 +191,92 @@ onUpdated(() => {})
 
 @media (max-width: 991px) {
   .roo_token {
+    padding-left: 60px;
+    padding-right: 60px;
     width: 100%;
     height: auto;
     margin-top: 0 auto;
+    margin-left: 0;
+  }
+  .w,
+  .roo-wrapper {
+    width: 100%;
+  }
+  .roo-wrapper {
+    display: block;
+  }
+  .roo-left,
+  .text {
+    width: 100% !important;
+    font-size: 12px !important;
+    line-height: 24px !important;
+  }
+  .roo-left {
+    margin-bottom: 36px;
+  }
+  .roo-right {
+    width: 100%;
+    margin-bottom: 36px;
+  }
+  .wrapper {
+    width: 100%;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rooc-img {
+    max-width: 500px;
   }
   .economy {
-    max-width: 714px;
+    width: 100%;
     margin: 10px auto;
     height: auto;
   }
   .token-img {
     max-width: 160px;
   }
+  .economy {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-bottom: 36px;
+  }
+  .total {
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 24px;
+  }
+  .token-img {
+    min-height: 280px;
+    width: auto;
+  }
 }
-
+@media (max-width: 766px) {
+  .roo_token {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .economy {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .total {
+    width: 100%;
+    padding-left: 10px;
+    margin-bottom: 24px;
+  }
+  .title {
+    font-size: 36px !important;
+    margin-bottom: 24px !important;
+  }
+  .token-img {
+    min-height: 220px;
+    width: 100%;
+  }
+}
 @function reduceFontSize($size: 2px) {
   @return calc(#{$size} * 0.9);
 }
