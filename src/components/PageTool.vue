@@ -67,7 +67,7 @@ onUpdated(() => {})
 }
 .orbit {
   box-sizing: border-box;
-  width: 1440px;
+  width: 100%;
   margin: 36px auto;
   padding-left: 80px;
   padding-right: 80px;
@@ -157,13 +157,11 @@ ul[class^='ring'] li {
 }
 
 .ring-1 > *:nth-of-type(1) {
-  transform: rotate(126.6666666667deg) translate(10em)
-    rotate(-126.6666666667deg);
+  transform: rotate(126.6666666667deg) translate(10em) rotate(-126.6666666667deg);
 }
 
 .ring-1 > *:nth-of-type(2) {
-  transform: rotate(253.3333333333deg) translate(10em)
-    rotate(-253.3333333333deg);
+  transform: rotate(253.3333333333deg) translate(10em) rotate(-253.3333333333deg);
 }
 
 .ring-1 > *:nth-of-type(3) {
@@ -400,5 +398,22 @@ ul[class^='ring'] li {
 .fa-codepen {
   background-image: url('https://i.seadn.io/gae/J2iIgy5_gmA8IS6sXGKGZeFVZwhldQylk7w7fLepTE9S7ICPCn_dlo8kypX8Ju0N6wvLVOKsbP_7bNGd8cpKmWhFQmqMXOC8q2sOdqw?w=256');
   color: white;
+}
+@media (max-width: 991px) {
+  .orbit {
+    height: 80vh;
+  }
+  .orbit-wrap {
+    height: 21.5em;
+    list-style: none;
+    font-size: 2.2em;
+  }
+}
+@media (max-width: 766px) {
+  .orbit-wrap {
+    height: 21.5em;
+    list-style: none;
+    font-size: 3em;
+  }
 }
 </style>

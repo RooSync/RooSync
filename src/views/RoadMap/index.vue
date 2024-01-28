@@ -72,12 +72,7 @@ const closeDialog = () => {
         </div>
 
         <div class="road-main">
-          <div
-            class="road-main-item"
-            v-for="i in dataList"
-            :key="i.title"
-            @click="handleItem(i)"
-          >
+          <div class="road-main-item" v-for="i in dataList" :key="i.title" @click="handleItem(i)">
             <div class="left">
               <div class="num">{{ i.num }}</div>
               <div class="left-title">{{ i.title }}</div>
@@ -320,6 +315,12 @@ const closeDialog = () => {
 }
 
 @media (max-width: 991px) {
+  .road-map {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 80vh;
+  }
   .modal-body {
     margin-top: 0px;
     display: flex;
@@ -337,6 +338,7 @@ const closeDialog = () => {
     margin-right: auto;
   }
   .road-map {
+    margin-top: 36px;
     padding-top: 35px;
     .model-item {
       display: flex;
@@ -365,34 +367,32 @@ const closeDialog = () => {
         }
       }
     }
+    .w {
+      height: 100%;
+      padding-left: 0;
+      padding-right: 35px;
+    }
     .road-map-wrapper {
-      margin-right: 20px;
+      height: 100%;
+      padding-left: 0;
       padding-left: 0;
       .com-title {
-        margin-top: 0;
-        padding-bottom: 40px;
         display: flex;
-        flex-direction: column;
+        margin-top: 0;
         padding-bottom: 0;
-        font-size: 140px;
         line-height: 13px;
         .title-1 {
-          margin-bottom: 14px;
-        }
-        .title-2 {
-          font-style: normal;
-          font-weight: 700;
-          font-size: 140px;
-          line-height: 93px;
-          color: #1e1f2a;
+          font-size: 50px;
+          margin-bottom: 20px;
         }
       }
 
       .road-main {
-        margin-top: 20px;
+        margin-top: 36px;
         justify-content: space-between;
         padding-bottom: 0;
         .road-main-item {
+          margin-bottom: 18px;
           width: 50%;
           overflow: hidden;
           flex-direction: column;

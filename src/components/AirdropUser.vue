@@ -1,10 +1,6 @@
 <script setup>
 import { onMounted, ref, computed, reactive } from 'vue'
-import {
-  auth,
-  saveUserToFirestore,
-  fetchUserData
-} from '@/utils/firebaseConfig'
+import { auth, saveUserToFirestore, fetchUserData } from '@/utils/firebaseConfig'
 import {
   getAuth,
   onAuthStateChanged,
@@ -25,9 +21,7 @@ const usersList = ref([])
 const shortenAddress = (address) => {
   const addressStr = address.value || ''
   if (!addressStr) return ''
-  return `${addressStr.substring(0, 6)}...${addressStr.substring(
-    addressStr.length - 4
-  )}`
+  return `${addressStr.substring(0, 6)}...${addressStr.substring(addressStr.length - 4)}`
 }
 
 const shortenedAddress = computed(() => shortenAddress(address))
@@ -178,10 +172,7 @@ const handleSignInTwitter = async () => {
       const invitedUserId = result.user.uid
       const invitedUserRef = doc(db, 'users', invitedUserId)
       const invitedUserSnap = await getDoc(invitedUserRef)
-      if (
-        invitedUserSnap.exists() &&
-        !invitedUserSnap.data().referrerRewarded
-      ) {
+      if (invitedUserSnap.exists() && !invitedUserSnap.data().referrerRewarded) {
         await updateReferrerPoints(referrerId, invitedUserId)
       }
     }
@@ -231,9 +222,6 @@ const copyInviteLink = () => {
 </script>
 
 <template>
-  <!-- <div class="airdrop">
-    <button class="loginTwitter" @click="handleSignInTwitter">Login</button>
-  </div> -->
   <div class="main">
     <div class="b-title" @click="toggleAnnouncement">
       <button
@@ -262,41 +250,26 @@ const copyInviteLink = () => {
         </svg>
       </button>
     </div>
-    <div
-      class="user_content MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1h77wgb"
-    >
+    <div class="user_content MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1h77wgb">
       <div
         class="info_left MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5 MuiGrid-grid-lg-4 css-yvsyv5"
       >
         <div v-if="!isUserLoggedIn" class="user_info">
           <div class="your_account mb-3 md:mb-4">
-            <h3 class="MuiTypography-root MuiTypography-headline2 css-1qxtt">
-              Your Account
-            </h3>
+            <h3 class="MuiTypography-root MuiTypography-headline2 css-1qxtt">Your Account</h3>
           </div>
           <p class="rule_verify">
-            In order to track your points, you need to first follow @roo_sync
-            and verify Twitter
+            In order to track your points, you need to first follow @roo_sync and verify Twitter
           </p>
           <a href="https://twitter.com/roo_sync" target="_blank">
             <div class="btn_twitter mb-3">
-              <button
-                tabindex="0"
-                type="button"
-                class="btn-verify"
-                @click="handleFollow"
-              >
+              <button tabindex="0" type="button" class="btn-verify" @click="handleFollow">
                 <div class="btn-verify_p">Step 1: Follow @RooSync</div>
               </button>
             </div>
           </a>
           <div class="btn_twitter mb-3" v-if="showVerifyButton">
-            <button
-              tabindex="0"
-              type="button"
-              class="btn-verify"
-              @click="handleSignInTwitter"
-            >
+            <button tabindex="0" type="button" class="btn-verify" @click="handleSignInTwitter">
               <div class="btn-verify_p">Step 2: Verify your twitter</div>
             </button>
           </div>
@@ -310,9 +283,7 @@ const copyInviteLink = () => {
             <div class="roo_logo">
               <img src="../assets/images/logo_w.png" alt="" />
             </div>
-            <p class="connected">
-              Your RooSync Points and stats will appear here after connecting
-            </p>
+            <p class="connected">Your RooSync Points and stats will appear here after connecting</p>
           </div>
         </div>
         <!-- after info -->
@@ -399,36 +370,24 @@ const copyInviteLink = () => {
                 </svg>
               </div>
             </div>
-            <div v-if="showCopySuccess" class="copy-success-message">
-              Copied
-            </div>
+            <div v-if="showCopySuccess" class="copy-success-message">Copied</div>
           </div>
         </div>
       </div>
       <div
         class="info_ringht MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7 MuiGrid-grid-lg-8 css-1661ml7"
       >
-        <div class="md:min-h-[398px] relative css-lzsi1o eig5zgx0">
+        <div class="right_info_u">
           <div class="right_title">
-            <h3 class="MuiTypography-root MuiTypography-headline2 css-1qxtt">
-              Top Accounts
-            </h3>
+            <h3 class="MuiTypography-root MuiTypography-headline2 css-1qxtt">Top Accounts</h3>
             <p class="Total Accounts">Total Accounts: {{ totalUsersCount }}</p>
           </div>
           <ul class="top_list">
             <p class="top_title"><span>Users</span><span>Roo Points</span></p>
             <hr class="line" />
-            <li
-              class="list_info"
-              v-for="listUser in displayedUsers"
-              :key="listUser.id"
-            >
+            <li class="list_info" v-for="listUser in displayedUsers" :key="listUser.id">
               <div class="list_address">
-                <img
-                  :src="listUser.avatar"
-                  alt="User Avatar"
-                  class="user-avatar"
-                />
+                <img :src="listUser.avatar" alt="User Avatar" class="user-avatar" />
                 <p class="list_address_p">{{ listUser.username }}</p>
               </div>
               <div class="list_point">
@@ -451,11 +410,7 @@ const copyInviteLink = () => {
   </div>
 
   <!-- occlusion -->
-  <div
-    v-if="showAnnouncement"
-    class="overlay"
-    @click="toggleAnnouncement"
-  ></div>
+  <div v-if="showAnnouncement" class="overlay" @click="toggleAnnouncement"></div>
   <!-- amm -->
   <div v-if="showAnnouncement" class="announcement-box">
     <div class="announcement-content">
@@ -465,8 +420,8 @@ const copyInviteLink = () => {
       </div>
       <hr />
       <p class="ann_p">
-        Users can earn RooSync points by inviting friends and interacting with
-        us on Twitter, such as @RooSync.
+        Users can earn RooSync points by inviting friends and interacting with us on Twitter, such
+        as @RooSync.
       </p>
     </div>
   </div>
@@ -485,6 +440,7 @@ const copyInviteLink = () => {
   padding-bottom: 50px;
 }
 .b-title {
+  height: auto;
   margin-bottom: 24px;
 }
 .illustrate {
@@ -819,5 +775,113 @@ h3 {
 }
 .view_p:hover {
   color: #fdb10d;
+}
+@media (max-width: 991px) {
+  .main {
+    height: 95vh;
+  }
+  .b-title {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+  }
+  .illustrate {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .illustrate-p {
+    font-size: 16px;
+  }
+  .user_content {
+    display: block;
+    height: auto;
+  }
+  .info_left {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  .your_account {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 20px;
+  }
+  .rule_verify {
+    font-size: 14px;
+  }
+  .btn_twitter {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .info_ringht {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .right_title {
+    margin-bottom: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 16px;
+  }
+  .top_list {
+    font-size: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .list_info {
+    margin-bottom: 8px;
+  }
+  .view_all {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 766px) {
+  .main {
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 12px;
+    height: 85vh;
+  }
+
+  .b-title {
+    width: 100%;
+    height: auto;
+  }
+  .illustrate {
+    height: 100%;
+  }
+  .rule_verify {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .right_title {
+    padding: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+  .view_all {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .top_list {
+    padding: 0;
+    font-size: 10px;
+    height: auto;
+    min-height: 280px;
+  }
+  .list_info {
+    width: 100%;
+    height: 50%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .user-avatar {
+    width: 20px;
+  }
+  .list_address {
+    white-space: nowrap;
+  }
 }
 </style>

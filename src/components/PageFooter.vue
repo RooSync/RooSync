@@ -230,8 +230,31 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg)
-    translateY(2px);
+  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg) translateY(2px);
   border-radius: 50%;
+}
+@media (max-width: 991px) {
+  .footer {
+    height: 30px;
+  }
+  .btc,
+  .btc-gas {
+    display: none;
+  }
+  .eth-gas {
+    font-size: 14px;
+  }
+  .parent {
+    height: 30px;
+  }
+  .parent a {
+    height: 100%;
+  }
+  .button {
+    height: 100%;
+  }
+  svg {
+    font-size: 20px;
+  }
 }
 </style>

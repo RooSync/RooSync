@@ -1,3 +1,15 @@
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+onMounted(() => {
+  setTimeout(() => {
+    router.push('/')
+  }, 5000)
+})
+</script>
 <template>
   <div class="orbit">
     <ul class="orbit-wrap">
@@ -44,19 +56,6 @@
   </div>
 </template>
 
-<script setup>
-import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-onMounted(() => {
-  setTimeout(() => {
-    router.push('/')
-  }, 5000)
-})
-</script>
-
 <style scoped>
 * {
   background-size: cover;
@@ -67,7 +66,7 @@ onMounted(() => {
 .orbit {
   float: left;
   width: 100%;
-  height: 80vh;
+  height: auto;
 }
 
 .orbit-icon {
@@ -153,13 +152,11 @@ ul[class^='ring'] li {
 }
 
 .ring-1 > *:nth-of-type(1) {
-  transform: rotate(126.6666666667deg) translate(10em)
-    rotate(-126.6666666667deg);
+  transform: rotate(126.6666666667deg) translate(10em) rotate(-126.6666666667deg);
 }
 
 .ring-1 > *:nth-of-type(2) {
-  transform: rotate(253.3333333333deg) translate(10em)
-    rotate(-253.3333333333deg);
+  transform: rotate(253.3333333333deg) translate(10em) rotate(-253.3333333333deg);
 }
 
 .ring-1 > *:nth-of-type(3) {
@@ -282,8 +279,8 @@ ul[class^='ring'] li {
 .orbit-wrap > li.orbit-center:hover ~ li > ul * {
   transform: translate(0, 0);
 }
-/* 
- animations 
+/*
+ animations
  */
 @keyframes clockwiseRotate {
   from {
@@ -304,8 +301,8 @@ ul[class^='ring'] li {
     transform: rotate(-360deg);
   }
 }
-/* 
- icons 
+/*
+ icons
  */
 /* solana */
 .fa-heart-o {
@@ -396,5 +393,19 @@ ul[class^='ring'] li {
 .fa-codepen {
   background-image: url('https://i.seadn.io/gae/J2iIgy5_gmA8IS6sXGKGZeFVZwhldQylk7w7fLepTE9S7ICPCn_dlo8kypX8Ju0N6wvLVOKsbP_7bNGd8cpKmWhFQmqMXOC8q2sOdqw?w=256');
   color: white;
+}
+@media (max-width: 991px) {
+  .orbit-wrap {
+    height: 21.5em;
+    list-style: none;
+    font-size: 2.2em;
+  }
+}
+@media (max-width: 766px) {
+  .orbit-wrap {
+    height: 21.5em;
+    list-style: none;
+    font-size: 3em;
+  }
 }
 </style>

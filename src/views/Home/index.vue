@@ -16,10 +16,10 @@ const handleClick = () => {
           <div class="left-section">
             <h1 class="main-title">Syncing Dreams<br />Roo by Roo</h1>
             <h2 class="sub-title">
-              Go-to web3 utility store where tools meet convenient In a
-              Roo-tastic way
+              Go-to web3 utility store where tools meet convenient In a Roo-tastic way
             </h2>
-            <a href="#" @click.prevent="handleClick" target="_blank">
+
+            <a href="#" @click.prevent="handleClick" target="_blank" class="buy_herf">
               <button class="buy">
                 <span class="box">
                   Buy $ROOC
@@ -76,7 +76,7 @@ const handleClick = () => {
             </a>
           </div>
           <div class="right-section">
-            <img src="@/assets/images/home_1.png" alt="Login Image" />
+            <img src="@/assets/images/home_1.png" alt="Login Image" class="home_img" />
           </div>
         </div>
       </div>
@@ -360,11 +360,117 @@ button:hover .star-6 {
 }
 
 .right-section {
-  width: 100vw;
+  width: 100%;
 }
 
-.right-section img {
-  width: 520px;
-  height: auto;
+@media (max-width: 991px) {
+  #home {
+    width: 100%;
+    display: block;
+    height: 100%;
+    padding-bottom: 0;
+    margin-top: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .r-home {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .login-container {
+    width: 100%;
+  }
+
+  .login-content {
+    width: 100%;
+    flex-direction: column;
+
+    .left-section,
+    .right-section {
+      width: 100%;
+    }
+  }
+  .left-section {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+  .main-title {
+    display: block;
+    width: 100%;
+    font-size: 70px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    margin-bottom: 40px;
+  }
+  .sub-title {
+    font-size: 21px;
+  }
+  .right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .home_img {
+    width: 430px;
+    height: 430px;
+  }
+  .buy_herf {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .buy {
+    font-size: 16px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 70px;
+  }
+}
+
+@media (max-width: 766px) {
+  #home {
+    height: 80vh;
+    padding-bottom: 0;
+    margin-top: 12px;
+  }
+  .main-title {
+    display: block;
+    width: 100%;
+    font-size: 38px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  // .sub-title {
+  //   font-size: 17px;
+  // }
+  .buy_herf {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .buy {
+    font-size: 16px;
+    padding-right: 90px;
+  }
+  .home_img {
+    width: 330px;
+    height: 330px;
+  }
+}
+@media (max-width: 390px) {
+  #home {
+    height: 100%;
+  }
 }
 </style>

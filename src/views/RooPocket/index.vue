@@ -16,15 +16,13 @@ onUpdated(() => {})
             </div>
 
             <div class="text1">
-              Roo Pocket is our carefully curated toolbox, providing users with
-              a variety of tools and resources to explore and enhance their web3
-              interactive experience. Users can seamlessly experience our native
-              developments and outstanding on-chain tools shared by other
-              developers at any time.
+              Roo Pocket is our carefully curated toolbox, providing users with a variety of tools
+              and resources to explore and enhance their web3 interactive experience. Users can
+              seamlessly experience our native developments and outstanding on-chain tools shared by
+              other developers at any time.
               <br />
-              By staking $ROOC, users gain access to the toolbox, while
-              developers can contribute excellent tools to Roo Pocket and earn
-              developer rewards.
+              By staking $ROOC, users gain access to the toolbox, while developers can contribute
+              excellent tools to Roo Pocket and earn developer rewards.
             </div>
 
             <div class="text2">UTILITY</div>
@@ -34,11 +32,10 @@ onUpdated(() => {})
                   <div class="l-titel">Diverse Tool Resources</div>
                   <div class="l-list">
                     <div class="l-item mb">
-                      RooSync brings together a diverse range of Web3 tools from
-                      multiple public blockchains, covering areas such as BRC20
-                      data analysis, NFT customization, and more. Whether you’re
-                      a developer, investor, or a regular user, you can find
-                      everything you need here.
+                      RooSync brings together a diverse range of Web3 tools from multiple public
+                      blockchains, covering areas such as BRC20 data analysis, NFT customization,
+                      and more. Whether you’re a developer, investor, or a regular user, you can
+                      find everything you need here.
                     </div>
                   </div>
                 </div>
@@ -48,11 +45,10 @@ onUpdated(() => {})
                   <div class="l-titel">Customized Tool Experience</div>
                   <div class="l-list">
                     <div class="l-item l-item-no">
-                      RooSync brings together a diverse range of Web3 tools from
-                      multiple public blockchains, covering areas such as BRC20
-                      data analysis, NFT customization, and more. Whether you’re
-                      a developer, investor, or a regular user, you can find
-                      everything you need here.
+                      RooSync brings together a diverse range of Web3 tools from multiple public
+                      blockchains, covering areas such as BRC20 data analysis, NFT customization,
+                      and more. Whether you’re a developer, investor, or a regular user, you can
+                      find everything you need here.
                     </div>
                   </div>
                 </div>
@@ -62,10 +58,9 @@ onUpdated(() => {})
                   <div class="l-titel">Partner Onboarding</div>
                   <div class="l-list">
                     <div class="l-item">
-                      Partner Onboarding: RooSync collaborates with numerous
-                      talented developers, offering them generous creator
-                      rewards. We only charge a 5% management fee on tool
-                      income.
+                      Partner Onboarding: RooSync collaborates with numerous talented developers,
+                      offering them generous creator rewards. We only charge a 5% management fee on
+                      tool income.
                     </div>
                   </div>
                 </div>
@@ -75,10 +70,9 @@ onUpdated(() => {})
                   <div class="l-titel">Multi-Chain Ecosystem</div>
                   <div class="l-list">
                     <div class="l-item">
-                      RooSync took the lead in contributing to the development
-                      of the BRC20 ecosystem. Subsequently, our Roo Pocket
-                      toolkit will be deployed on other networks such as ETH,
-                      Polygon, Avalanche, and more, Roo by Roo!
+                      RooSync took the lead in contributing to the development of the BRC20
+                      ecosystem. Subsequently, our Roo Pocket toolkit will be deployed on other
+                      networks such as ETH, Polygon, Avalanche, and more, Roo by Roo!
                     </div>
                   </div>
                 </div>
@@ -173,6 +167,11 @@ onUpdated(() => {})
     width: 100%;
   }
   .main {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     width: 100%;
     padding-top: 0;
     padding-bottom: 50px;
@@ -201,7 +200,6 @@ onUpdated(() => {})
       font-size: 40px;
       line-height: 90px;
       letter-spacing: -0.01em;
-      text-transform: uppercase;
     }
     .card-list {
       margin-top: 36px;
@@ -220,7 +218,6 @@ onUpdated(() => {})
             font-weight: 400;
             font-size: 25px;
             letter-spacing: 0.005em;
-            text-transform: uppercase;
           }
           .l-list {
             padding-left: 0;
@@ -276,7 +273,6 @@ onUpdated(() => {})
       font-size: 40px;
       line-height: 40px;
       letter-spacing: -0.01em;
-      text-transform: uppercase;
     }
 
     .img-list {
@@ -309,6 +305,57 @@ onUpdated(() => {})
         }
       }
     }
+  }
+}
+@media (max-width: 991px) {
+  .real {
+    margin-top: 36px;
+  }
+  .pic_real_main {
+    display: none;
+  }
+
+  .text1 {
+    font-size: 20px;
+  }
+}
+.text1 {
+  font-size: 16px;
+}
+@media (max-width: 766px) {
+  .real {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+  }
+  .main-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .main {
+    width: 100%;
+  }
+
+  .com-title {
+    display: block;
+  }
+  .title-1 {
+    font-size: 36px !important;
+  }
+  .text1 {
+    font-size: 12px !important;
+    line-height: 18px !important;
+  }
+  .text2 {
+    font-size: 24px !important;
+    margin-top: 20px !important;
+  }
+  .l-titel {
+    font-size: 12px !important;
+  }
+  .l-item {
+    font-size: 8px !important;
   }
 }
 </style>
