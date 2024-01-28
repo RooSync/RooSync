@@ -832,6 +832,25 @@ h3 {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+  .login_title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 12px;
+  }
+  .user_ID {
+    font-size: 10px;
+  }
+  .user_points {
+    font-size: 12px;
+  }
+  .points_title {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 10px;
+  }
+  .invite_link {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 766px) {
@@ -880,6 +899,25 @@ h3 {
   }
   .list_address {
     white-space: nowrap;
+  }
+  .login_title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 12px;
+  }
+  .user_ID {
+    font-size: 10px;
+  }
+  .user_points {
+    font-size: 12px;
+  }
+  .points_title {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 10px;
+  }
+  .invite_link {
+    font-size: 10px;
   }
 }
 </style>
