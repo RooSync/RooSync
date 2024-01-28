@@ -858,7 +858,7 @@ h3 {
     margin: 0 auto;
     padding-left: 10px;
     padding-right: 12px;
-    height: 85vh;
+    height: 90vh;
   }
 
   .b-title {
