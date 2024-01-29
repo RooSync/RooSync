@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { onMounted, onUpdated } from 'vue'
-onMounted(() => {})
+onMounted(() => { })
 
-onUpdated(() => {})
+onUpdated(() => { })
 const isDialogVisible = ref(false)
 const activeItem = ref({})
 const dataList = ref([
@@ -105,10 +105,12 @@ const closeDialog = () => {
   box-sizing: border-box;
   width: 1440px;
   margin-top: 36px;
+  padding-top: 48px;
   padding-left: 80px;
   padding-right: 80px;
   margin-bottom: 36px;
-  height: 670px;
+  height: 75vh;
+
   .w {
     width: 100%;
 
@@ -117,6 +119,7 @@ const closeDialog = () => {
       padding-left: 85px;
     }
   }
+
   .model-item {
     display: flex;
     justify-content: space-between;
@@ -126,6 +129,7 @@ const closeDialog = () => {
     .left {
       display: flex;
       flex-direction: column;
+
       .title {
         padding-bottom: 40px;
 
@@ -135,6 +139,7 @@ const closeDialog = () => {
         line-height: 48px;
         color: #d2d2d4;
         position: relative;
+
         &::after {
           content: '';
           display: block;
@@ -147,6 +152,7 @@ const closeDialog = () => {
           opacity: 0.1;
         }
       }
+
       .info {
         margin-top: 20px;
         font-style: normal;
@@ -156,14 +162,17 @@ const closeDialog = () => {
         color: #1e1f2a;
       }
     }
+
     .right {
       width: 100%;
+
       img {
         width: 100%;
         height: 100%;
       }
     }
   }
+
   .com-title {
     width: 100%;
     height: auto;
@@ -173,6 +182,7 @@ const closeDialog = () => {
       font-size: 70px;
     }
   }
+
   // .text {
   //   margin-top: 40px;
   //   font-style: normal;
@@ -187,6 +197,7 @@ const closeDialog = () => {
     flex-wrap: wrap;
     padding-top: 12px;
     margin-bottom: 30px;
+
     .road-main-item {
       flex: 0 0 48%;
       padding: 24px 24px 24px 30px;
@@ -204,6 +215,7 @@ const closeDialog = () => {
       &:hover {
         .left-title {
           position: relative;
+
           &::after {
             position: absolute;
             top: 50%;
@@ -214,30 +226,37 @@ const closeDialog = () => {
             height: 6px;
           }
         }
+
         .right {
           opacity: 1;
         }
       }
+
       &:nth-child(2n) {
         margin-left: 8px;
       }
+
       &:nth-child(2) {
         width: 594px;
         height: 240px;
       }
+
       &:nth-child(3) {
         width: 594px;
         height: 240px;
         transform: translate(0, -40px);
       }
+
       img {
         width: 100%;
         height: 100%;
       }
+
       .left {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+
         .num {
           font-style: normal;
           font-weight: 400;
@@ -247,6 +266,7 @@ const closeDialog = () => {
           color: #d2d2d4;
           opacity: 0.2;
         }
+
         .left-title {
           margin-top: 14px;
           font-style: normal;
@@ -260,6 +280,7 @@ const closeDialog = () => {
           color: #f8edeb;
         }
       }
+
       .right {
         opacity: 1;
       }
@@ -308,6 +329,7 @@ const closeDialog = () => {
   font-size: 16px;
   line-height: 30px;
 }
+
 .modal-body img {
   display: block;
   margin-left: auto;
@@ -321,15 +343,18 @@ const closeDialog = () => {
     padding-left: 20px;
     height: 80vh;
   }
+
   .modal-body {
     margin-top: 0px;
     display: flex;
   }
+
   .modal-body p {
     margin-top: 15px;
     font-size: 8px;
     line-height: 10px;
   }
+
   .modal-body img {
     height: 50%;
     width: 50%;
@@ -337,9 +362,11 @@ const closeDialog = () => {
     margin-left: auto;
     margin-right: auto;
   }
+
   .road-map {
     margin-top: 36px;
     padding-top: 35px;
+
     .model-item {
       display: flex;
       flex-direction: column;
@@ -352,35 +379,42 @@ const closeDialog = () => {
           line-height: 22px;
           padding-bottom: 16px;
         }
+
         .info {
           font-size: 14px;
           line-height: 24px;
           margin-bottom: 100px;
         }
       }
+
       .right {
         width: 100%;
         display: flex;
         justify-content: flex-end;
+
         img {
           width: 160px;
         }
       }
     }
+
     .w {
       height: 100%;
       padding-left: 0;
       padding-right: 35px;
     }
+
     .road-map-wrapper {
       height: 100%;
       padding-left: 0;
       padding-left: 0;
+
       .com-title {
         display: flex;
         margin-top: 0;
         padding-bottom: 0;
         line-height: 13px;
+
         .title-1 {
           font-size: 50px;
           margin-bottom: 20px;
@@ -391,6 +425,7 @@ const closeDialog = () => {
         margin-top: 36px;
         justify-content: space-between;
         padding-bottom: 0;
+
         .road-main-item {
           margin-bottom: 18px;
           width: 50%;
@@ -398,29 +433,36 @@ const closeDialog = () => {
           flex-direction: column;
           padding: 16px;
           height: auto;
+
           &:nth-child(2n) {
             margin-left: 0;
           }
+
           &:nth-child(2) {
             width: 50%;
           }
+
           &:nth-child(3) {
             width: 50%;
             transform: translate(0, 0);
           }
+
           .left {
             .num {
               font-size: 14px;
             }
+
             .left-title {
               font-size: 18px;
               line-height: 22px;
             }
           }
+
           .right {
             margin-top: 42px;
             width: 70%;
             align-self: flex-end;
+
             img {
               width: 100%;
               height: 100%;
